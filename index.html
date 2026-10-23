@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How much does your Seoul treatment trip cost per session?</title>
+<style>
+  :root{ --ink:#12161c; --muted:#5b6672; --line:#dfe4ea; --bg:#fff; --neu:#5b6672; --neubg:#f1f3f6;
+         --warn:#8a5a00; --warnbg:#fdf5e6; --warnline:#f0d9a8; }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-text-size-adjust:100%}
+  .wrap{max-width:520px;margin:0 auto;padding:14px 16px 40px}
+  h1{font-size:23px;line-height:1.22;margin:2px 0 6px;letter-spacing:-.2px}
+  .sub{color:var(--muted);font-size:14.5px;margin:0 0 14px}
+  .fld{margin:0 0 11px}
+  .fld label{display:block;font-size:14px;font-weight:600;margin:0 0 4px}
+  .hint{display:block;font-size:12.5px;color:var(--muted);margin:2px 0 0}
+  input[type=number],input[type=text],input[type=email],select{width:100%;padding:11px 12px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);min-height:44px}
+  input:focus,select:focus{outline:2px solid #1a73e8;outline-offset:1px;border-color:#1a73e8}
+  input:disabled{background:#f1f3f6;color:var(--muted);-webkit-text-fill-color:var(--muted)}
+  .row{display:flex;gap:9px}
+  .row>*{flex:1}
+  .toggles{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+  .tg{display:flex;align-items:center;gap:7px;font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:8px 12px;cursor:pointer;background:#fff;min-height:40px}
+  .tg input{width:17px;height:17px;min-height:0;margin:0;accent-color:#12161c}
+  .tg.on{background:#eef3fb;border-color:#c9d4e6}
+  .btn{width:100%;padding:14px;font-size:16.5px;font-weight:700;border:0;border-radius:11px;background:var(--ink);color:#fff;cursor:pointer;min-height:48px}
+  .btn:active{opacity:.86}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);font-size:14.5px;font-weight:600;padding:10px 12px;min-height:42px}
+  .btn.pay{background:#0b5cab}
+  #out{margin-top:16px}
+  .headline{border:1px solid var(--line);border-radius:12px;padding:14px 15px;margin:0 0 11px;background:#fbfcfd}
+  .headline .k{font-size:12.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin:0 0 5px}
+  .headline .main{font-size:19px;font-weight:800;line-height:1.35;letter-spacing:-.2px;margin:0 0 6px}
+  .headline .case{font-size:16px;font-weight:700;margin:0 0 6px}
+  .headline .target{font-size:13.5px;color:var(--muted);margin:0 0 6px;line-height:1.45}
+  .headline .premise{font-size:13px;color:var(--muted);line-height:1.4;margin:0}
+  .disclaim{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;border:1px solid var(--line);background:var(--neubg);color:var(--neu);margin:0 0 11px}
+  .card{border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin:0 0 11px}
+  .card h2{font-size:13.5px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  .fixlist{margin:0;padding:0;list-style:none}
+  .fixlist li{font-size:14px;padding:7px 0;border-bottom:1px solid #eef1f4;display:flex;gap:9px;align-items:flex-start}
+  .fixlist li:last-child{border-bottom:0}
+  .fixlist .n{font-weight:800;color:var(--muted);min-width:18px}
+  table{width:100%;border-collapse:collapse;font-size:14.5px}
+  td{padding:5px 0;vertical-align:top}
+  td.k{color:var(--muted);width:46%;padding-right:10px}
+  td.v{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .date{display:inline-block;font-size:11px;font-weight:700;color:var(--muted);margin-left:3px;letter-spacing:.1px;white-space:nowrap}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;border:1px solid var(--line);color:var(--muted);margin-left:4px;letter-spacing:.3px;white-space:nowrap}
+  .tag.you{border-color:#c9d4e6;color:#2b4a7d;background:#eef3fb}
+  .tag.fx{border-color:#b9e3cd;color:#0f7a4d;background:#eaf7f0}
+  .tag.asof{border-color:#d8cdea;color:#4b3a72;background:#f2eef9}
+  .tag.nc{border-color:#e3c2bd;color:#8a3227;background:#fbecea}
+  .warn{border:1px solid var(--warnline);background:var(--warnbg);color:var(--warn);border-radius:11px;padding:11px 13px;font-size:13.5px;line-height:1.45;margin:0 0 11px}
+  .src{font-size:12px;color:var(--muted)}
+  /* On a phone the two table columns cannot both fit: the figure and its label tag are wider
+     than the label column, so the tag was clipped off the right edge — and that tag is what
+     says whether a figure is the user's own input. Stack the row instead. */
+  @media (max-width:430px){
+    table,tbody,tr,td{display:block;width:100%}
+    td.k{width:100%;padding:9px 0 1px;font-size:13.5px}
+    td.v{text-align:left;padding:0 0 9px;white-space:normal}
+  }
+  .warn{margin:0 0 11px;border:1px solid var(--warnline);background:var(--warnbg);color:var(--warn);border-radius:11px;padding:10px 12px;font-size:13.5px;font-weight:600}
+  .pack{border:1px solid #cfe0f2;background:#f5f9fd;border-radius:12px;padding:13px 14px;margin:0 0 11px}
+  .pack h2{font-size:15px;margin:0 0 5px}
+  .pack ul{margin:0 0 10px;padding-left:18px;font-size:14px;color:var(--muted)}
+  .pack .price{font-size:20px;font-weight:800;margin:0 0 9px}
+  .pack .packnote{font-size:13.5px;color:var(--muted);margin:0 0 11px}
+  .pack .privacy{font-size:12px;color:var(--muted);margin:10px 0 0;line-height:1.45}
+  .acts{display:flex;gap:9px;margin-top:12px}
+  .acts button{flex:1;padding:12px;font-size:15px;font-weight:650;border-radius:10px;cursor:pointer;min-height:46px}
+  .acts .copy{border:1px solid var(--ink);background:var(--ink);color:#fff}
+  .acts .dl{border:1px solid var(--line);background:#fff;color:var(--ink)}
+  .fine{font-size:12.5px;color:var(--muted);margin:14px 0 0}
+  .fine code{background:#f2f4f7;padding:1px 4px;border-radius:4px;font-size:12px}
+  .rates{font-size:12.5px;color:var(--muted);margin:0 0 11px}
+  .rates button{background:none;border:0;color:#2b4a7d;text-decoration:underline;font-size:12.5px;cursor:pointer;padding:0}
+  .hidden{display:none !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>How much does your Seoul treatment trip cost per session?</h1>
+  <!-- The landing promise is scoped to what is true about USING the tool, not about the
+       whole session. "No sign-up" and "nothing stored" were both broken by the page itself:
+       one screen later the $19 pre-registration card is on screen ("$19 pack - pre-registration
+       only" / "Count me as interested in the $19 pack"), and a click is Recorded ("Recorded:
+       one click, nothing else") and posted to the sink. The claims that survive contact are
+       the specific ones: nothing the user types leaves the page (the payload carries no quote,
+       session, travel or price values), and there is no email, no account and no list. -->
+  <p class="sub">Your own numbers only. Nothing you type leaves this page — no email, no account, no list.</p>
+
+  <form id="f" autocomplete="off" novalidate>
+    <div class="fld">
+      <label for="q">The quote you were given, all sessions (KRW)</label>
+      <input id="q" type="number" inputmode="numeric" step="1" min="0" placeholder="4050000">
+      <span class="hint">The total on your quote. If it is a per-session price, switch the unit below.</span>
+    </div>
+
+    <div class="toggles">
+      <label class="tg" id="tgPer"><input type="checkbox" id="perSession"><span>My quote is per session</span></label>
+      <label class="tg" id="tgHere"><input type="checkbox" id="inKorea"><span>I'm already in Korea</span></label>
+    </div>
+
+    <div class="fld">
+      <label for="s">Sessions in that quote</label>
+      <input id="s" type="number" inputmode="numeric" step="1" min="1" placeholder="3">
+      <span class="hint">The number written on your quote. We never guess it.</span>
+    </div>
+
+
+
+    <div class="fld">
+      <label for="t">Your travel and on-the-ground costs (KRW)</label>
+      <input id="t" type="number" inputmode="numeric" step="1" min="0" placeholder="1350000">
+      <span class="hint">Flights, hotel, and what you will spend once you are there — an interpreter, for example. For one person. Leave empty if you are already in Korea.</span>
+    </div>
+
+    <button class="btn" type="submit">Work it out</button>
+  </form>
+
+  <div id="out" class="hidden" aria-live="polite">
+    <div class="headline">
+      <p class="k">Your per-session cost <span class="tag you">from your inputs</span></p>
+      <p class="main" id="h-main"></p>
+      <p class="case" id="h-case"></p>
+      <p class="target" id="h-target"></p>
+      <p class="premise" id="h-premise"></p>
+    </div>
+
+    <div id="warn-slot"></div>
+    <div class="disclaim" id="disclaim">Not medical advice · cost arithmetic only · checked 2026-10-21</div>
+
+    <div class="acts">
+      <button class="copy" type="button" id="copy">Copy summary</button>
+      <button class="dl" type="button" id="dl">Download</button>
+    </div>
+
+    <div class="card" id="fixcard">
+      <h2>What would change this</h2>
+      <ul class="fixlist" id="fixlist"></ul>
+    </div>
+
+    <div class="card">
+      <h2>How we got there</h2>
+      <p style="font-size:13px;color:var(--muted);margin:0 0 8px" id="cur-note"></p>
+      <table><tbody id="calc"></tbody></table>
+    </div>
+
+    <div class="card">
+      <h2>What we could not check</h2>
+      <p style="font-size:14px;margin:0 0 8px" id="q2note"></p>
+      <table><tbody id="limits"></tbody></table>
+    </div>
+
+    <!-- The pack card lives inside the result block on purpose (Chief, 2026-10-22): the landing
+         screen must not show a paid offer before the free answer is on screen. It is the only
+         conversion path this build has, so it stays - but it appears after the value, not before. -->
+    <div class="pack">
+      <h2>The $19 pack &mdash; pre-registration only</h2>
+      <p class="price">$19, once, when it exists</p>
+      <p class="packnote">The calculator above is free and complete on its own, and you do not need
+        this to use it. This is a pre-registration, not a sale: there is no payment on this page, and
+        you are not charged until you choose to buy. What the pack will contain is not decided yet,
+        which is why the button below only counts interest.</p>
+      <p class="privacy">No email is collected on this page. There is no list, and nobody will
+        contact you. The button below records one click and nothing else &mdash; no address, no quote,
+        no amounts.</p>
+      <button class="btn pay" type="button" id="wlbtn">Count me as interested in the $19 pack</button>
+      <p class="hint" id="wlmsg" style="margin-top:8px"></p>
+    </div>
+
+  </div>
+
+  
+  
+  <p class="fine">
+    Every figure carries a label: <code>YOUR INPUT</code>, <code>AS OF date</code>, or
+    <code>not compared</code>. We hold no price records, so nothing here is compared with anyone
+    else's price. You entered your own quote, so this tool works out your own money only. This is
+    not medical advice and it points to no one.
+  </p>
+  
+  <p class="fine" id="meas-note"></p>
+</div>
+
+<script>
+// DCR-1 v1.7 core — the normative rules of reports/NICHE_SCORING_AND_UNIT_ECONOMICS_V11.md §8.7.
+// The spec is canonical; this file implements it and is checked against the judge
+// (reports/dcr1_thirdparty_repro.py) by verify-dcr1.mjs.
+//
+// SCALING: every value is a BigInt at 6dp scale (SC = 10^6). A "scaled" value V represents
+// the real number V/SC. Inputs arrive via parseDec() already scaled.
+//   · dividing scaled/scaled:  q6scaled(num, den) = rhu(num*SC, den)
+//   · dividing scaled by a raw count: the count is scaled first (count*SC) so the same rule applies.
+// No binary floating point anywhere (M-2: "십진 고정 소수점 · 6자리 ROUND_HALF_UP · 부동소수점 0").
+//
+// SIGN (v1.4+): d = I4_conv − u   (d = home − Korea, same display currency)
+//   d > 0  Korea is cheaper per session -> adding sessions can recover the travel cost
+//   d < 0  Korea is dearer per session  -> no session count recovers it
+// (Chief's earlier formula had the sign reversed; Critic caught it — Critic is right.)
+//
+// JUDGMENT ORDER (v1.6/v1.7): ① d<0 → ④ d=0 → ③ I3=0 or N=0 → ⑤ ceil(N)>I2 → ⑥ N integer → ② N non-integer
+
+var SC = 1000000n;                       // 10^6
+var SC12 = 1000000000000n;               // 10^12, intermediate precision
+var CUR_META = {
+  USD: { sym:'$',  dp:2 },
+  SGD: { sym:'S$', dp:2 },
+  JPY: { sym:'¥',  dp:0 },
+  KRW: { sym:'₩',  dp:0 }
+};
+
+// round half up, away from zero (Python decimal ROUND_HALF_UP). den != 0.
+function rhu(num, den) {
+  if (den === 0n) throw new Error('den must not be 0');
+  var neg = (num < 0n) !== (den < 0n);
+  var a = num < 0n ? -num : num;
+  var b = den < 0n ? -den : den;
+  var q = (2n * a + b) / (2n * b);
+  return neg ? -q : q;
+}
+
+// 6dp ROUND_HALF_UP of (scaled num / scaled den), returned at 6dp scale.
+// Both operands carry the same 6dp scale, so num/den is already the ratio; expressing it
+// at 6dp means multiplying by SC ONCE. (rhu does the half-up rounding.)
+function q6scaled(num, den) { return rhu(num * SC, den); }
+
+// Division of a scaled value by a RAW count (e.g. I3c / I2): the result is a scaled
+// amount again, so the ratio must be scaled by SC.
+function q6divCount(scaledNum, rawCount) { return rhu(scaledNum, rawCount); }
+
+// thr = u + I3c / I2 and ustar = I4c − I3c / I2.
+// I3c is at 6dp scale and I2 is a raw count, so the quotient is computed at 6dp and then
+// added/subtracted — the judge rounds the SUM to 6dp, so we round the sum the same way.
+// (An earlier 12dp variant multiplied a 6dp value by 10^12, producing BigInts large enough
+//  to stall; the 6dp form is both exact to the judge's precision and cheap.)
+function divCount(scaledNum, rawCount) { return rhu(scaledNum, rawCount); }
+// 12dp intermediate, rounded to 6dp. Used so the DISPLAY rounding matches the judge, which
+// evaluates expressions at full precision and rounds only at display time.
+function round12to6(v12) { return rhu(v12, SC12); }
+
+// parse a decimal string ("1350", "9.2", "1", "0.5") into a 6dp-scaled BigInt, exactly.
+function parseDec(s) {
+  s = String(s).trim();
+  var neg = false;
+  if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+  if (s.charAt(0) === '+') s = s.slice(1);
+  var parts = s.split('.');
+  var ip = parts[0] || '0';
+  var fp = (parts[1] || '').slice(0, 6);
+  while (fp.length < 6) fp += '0';
+  var v = BigInt(ip) * SC + BigInt(fp);
+  return neg ? -v : v;
+}
+
+function fmtFixed(scaled, dp) {
+  var neg = scaled < 0n, a = neg ? -scaled : scaled;
+  var whole = a / SC, frac = a % SC;
+  var s = whole.toString();
+  if (dp > 0) {
+    var f = frac.toString();
+    while (f.length < 6) f += '0';
+    s += '.' + f.slice(0, dp);
+  }
+  return (neg ? '−' : '') + s;
+}
+
+// display rounding to the currency's minor unit, with a thousands separator and the symbol.
+function money(scaled, cur) {
+  var m = CUR_META[cur] || CUR_META.USD;
+  var neg = scaled < 0n, a = neg ? -scaled : scaled;
+  var unit = (m.dp === 0) ? SC : 10000n;          // 10^6 for 0dp, 10^4 for 2dp
+  // round to the minor unit, HALF UP: add half the unit before the integer division.
+  var q = (a + unit / 2n) / unit * unit;
+  var s = fmtFixed(q, m.dp);
+  var body = s.replace(/^−/, '');
+  var bits = body.split('.');
+  bits[0] = bits[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return (neg ? '−' : '') + m.sym + bits.join('.');
+}
+function signed(scaled, cur) {
+  return (scaled < 0n ? '−' : '+') + money(scaled < 0n ? -scaled : scaled, cur);
+}
+
+// LABEL TAXONOMY (V11 §8.7 §D) — 5 kinds. A published number carries exactly one.
+//   'YOUR INPUT'        a number the user typed
+//   'FX @ <date>'       a number that came from the dated exchange rate
+//   'AS OF <date>'      a slowly-changing norm (e.g. the stay-length default)
+//   'not compared'      a row where we say we did not check something
+//   'OURS'              a number from OUR dataset — we hold 0 price records, so this
+//                        kind is DEFINED but NEVER EMITTED. (Do not add it to the page.)
+var LABEL_KINDS = ['YOUR INPUT','FX @ <date>','AS OF <date>','not compared','OURS'];
+
+// The 6 normative cases. `ko` is the spec's normative sentence (used by the spec-level
+// third-party repro); `en` is the screen rendering of the same rule.
+var CASE_TEXT = {
+  '1': { ko:'회차를 늘려도 회복 불가 — 본가가 세션당 {thr} 이상이어야 합니다',
+         en:'Adding sessions cannot recover it — home would need to be at least {thr} a session' },
+  '2': { ko:'최소 {cn}회 필요', en:'At least {cn} sessions are needed' },
+  '3': { ko:'이 입력으로는 답이 정해지지 않음', en:'These inputs do not determine an answer' },
+  '4': { ko:'회차를 늘어도 차액은 0 — 여행비 {i3c}은 회차로 덮이지 않습니다',
+         en:'Adding sessions changes nothing — the travel cost of {i3c} is not covered by any number of sessions' },
+  '5': { ko:'견적 회차로는 회수 불가 — 최소 {cn}회 필요, 또는 한국 회당 단가가 {ustar} 이하여야 합니다',
+         en:'Your quoted sessions cannot recover it — at least {cn} sessions are needed, or the Seoul per-session price must be at most {ustar}' },
+  '6': { ko:'최소 {n}회 기준, 여행비를 정확히 회수합니다 (그 회차의 차액은 0)',
+         en:'At {n} sessions the travel cost is recovered exactly (the difference at that count is 0)' }
+};
+
+/**
+ * computeDCR1 — the whole rule set.
+ * @param I1  quote total, currency C1 (KRW)          6dp-scaled
+ * @param I2  sessions in that quote (raw integer)
+ * @param I3  inbound travel total, currency C1 (KRW)  6dp-scaled
+ * @param I4  home price per session, DISPLAY currency 6dp-scaled
+ * @param R   KRW per 1 unit of the display currency, dated at request time  6dp-scaled
+ * @param cur display currency (== I4's currency)
+ */
+function computeDCR1(I1, I2, I3, I4, R, cur, allowI4) {
+  // The build flag is the switch, not the screen. With it off, this function returns the
+  // travel arithmetic only: no d, no N, no threshold, no home-relative sentence can be
+  // produced, whatever the caller passes in.
+  if (allowI4 === false) {
+    var q1 = computeQ1Travel(I1, I2, I3);
+    q1.case = 'nc-i4';
+    q1.sentEn = 'This build does not compare your quote with another price, so there is no '
+      + 'per-session difference and no break-even count. Every figure below is worked out '
+      + 'from your own numbers.';
+    q1.sentKo = '이 빌드는 다른 가격과 비교하지 않으므로 회차당 차이와 손익분기 회차가 없습니다. '
+      + '아래 수치는 전부 입력값에서 계산한 결과입니다.';
+    return q1;
+  }
+  var I2n = BigInt(I2);
+  var I2s = I2n * SC;                       // the count, at 6dp scale
+  // B1: u_local = I1 / I2 (in C1)  ->  u = u_local / R (in the display currency).
+  // u_local and R are BOTH 6dp-scaled, so the ratio (u_local/R) is a plain number and
+  // expressing it at 6dp means one scaling step:  scaled = u_local * SC / R.
+  var u_local = q6divCount(I1, I2n);            // = I1 / I2, still at 6dp scale
+  var u = q6scaled(u_local, R);                 // scaled/scaled -> one scaling step
+  var I3c = q6scaled(I3, R);                    // scaled/scaled -> one scaling step
+  var I4c = I4;                             // already in the display currency
+  // B2: d = I4_conv − u  (home − Korea)
+  var d = I4c - u;
+  // B6: threshold (sufficient condition) = u + I3c / I2 ; u* = I4_conv − I3c / I2
+  var I3div = divCount(I3c, I2n);
+  var thr = u + I3div;
+  var ustar = I4c - I3div;
+  // B3: N = I3c / d (undefined when d == 0)
+  var N = (d === 0n) ? null : q6scaled(I3c, d);   // scaled/scaled -> one scaling step
+  var cn = (N === null) ? null : ((N + SC - 1n) / SC);   // ceil (N > 0 here)
+  // net(n) = n × d − I3c, evaluated at 12dp and rounded to 6dp, so the DISPLAY rounding
+  // matches the judge (which evaluates at full precision and rounds only at display time).
+  var net = function(n){ return round12to6(BigInt(n) * d * SC12 - I3c * SC12); };
+
+  var kase, m, sentKo, sentEn, vals;
+  if (d < 0n) {                                        // ①
+    kase = '1'; m = I2n;
+    sentKo = CASE_TEXT['1'].ko.replace('{thr}', money(thr, cur));
+    sentEn = CASE_TEXT['1'].en.replace('{thr}', money(thr, cur));
+    vals = [net(1n), net(I2n)];
+  } else if (d === 0n) {                               // ④
+    kase = '4'; m = null;
+    sentKo = CASE_TEXT['4'].ko.replace('{i3c}', money(I3c, cur));
+    sentEn = CASE_TEXT['4'].en.replace('{i3c}', money(I3c, cur));
+    vals = [net(1n)];                                   // ONE value only
+  } else if (I3 === 0n || N === 0n) {                  // ③
+    kase = '3'; m = I2n;
+    sentKo = CASE_TEXT['3'].ko; sentEn = CASE_TEXT['3'].en;
+    vals = [net(1n), net(I2n)];
+  } else if (cn > I2n) {                                // ⑤
+    kase = '5'; m = I2n;
+    sentKo = CASE_TEXT['5'].ko.replace('{cn}', cn.toString()).replace('{ustar}', money(ustar, cur));
+    sentEn = CASE_TEXT['5'].en.replace('{cn}', cn.toString()).replace('{ustar}', money(ustar, cur));
+    vals = [net(1n), net(I2n)];
+  } else if (N === (N / SC) * SC) {                      // ⑥  N is an integer
+    kase = '6'; m = N / SC;
+    sentKo = CASE_TEXT['6'].ko.replace('{n}', m.toString());
+    sentEn = CASE_TEXT['6'].en.replace('{n}', m.toString());
+    vals = [net(1n), net(N / SC)];
+  } else {                                               // ②
+    kase = '2'; m = cn;
+    sentKo = CASE_TEXT['2'].ko.replace('{cn}', cn.toString());
+    sentEn = CASE_TEXT['2'].en.replace('{cn}', cn.toString());
+    vals = [net(1n), net(cn)];
+  }
+
+  return {
+    case: kase, u: u, u_local: u_local, I3c: I3c, I4c: I4c, d: d, N: N, cn: cn,
+    thr: thr, ustar: ustar, m: m, vals: vals, sentKo: sentKo, sentEn: sentEn, net: net,
+    // first line: ALWAYS net(1) first, then the case-table count (M)
+    firstLine: (vals.length === 1)
+      ? '1 session: ' + signed(vals[0], cur)
+      : '1 session: ' + signed(vals[0], cur) + '  ·  ' + m.toString()
+        + (m === 1n ? ' session: ' : ' sessions: ') + signed(vals[1], cur)
+  };
+}
+
+// Q1-only: no I4 -> no comparison, no FX. u only (in C1). This is the publish-now core.
+function computeQ1Only(I1, I2) {
+  return { u_local: q6scaled(I1, BigInt(I2) * SC) };
+}
+
+// Q1 travel arithmetic (the publish-now core, I1 · I2 · I3 only — no I4, no rate, no date).
+//   C1        = I1 / I2            the per-session price of the quote itself
+//   P(n)      = I3 / n             the travel bill carried by one session at n sessions
+//   E(n)      = C1 + P(n)          the per-session cost with travel included, at n sessions
+//   tripTotal = I1 + I3            everything spent for the quoted course plus the trip
+// Everything stays in the quote's own currency (KRW), so no exchange rate and no rate date
+// can enter a figure. The counts shown on screen are arithmetic examples, not a plan.
+function computeQ1Travel(I1, I2, I3) {
+  var I2n = BigInt(I2);
+  var u_local = q6divCount(I1, I2n);                  // C1 = I1 / I2
+  var tripTotal = I1 + I3;                            // the whole course plus the trip
+  var perSessionTrip = q6divCount(tripTotal, I2n);    // E(I2) = (I1 + I3) / I2
+  var premium = function(n){ return q6divCount(I3, BigInt(n)); };  // P(n) = I3 / n
+  var at = function(n){ return u_local + premium(BigInt(n)); };    // E(n) = C1 + P(n)
+  return {
+    u_local: u_local, tripTotal: tripTotal, perSessionTrip: perSessionTrip,
+    premium: premium, at: at, I2: I2n, I3: I3
+  };
+}
+
+var API = {
+  SC: SC, CUR_META: CUR_META, rhu: rhu, q6scaled: q6scaled, parseDec: parseDec,
+  fmtFixed: fmtFixed, money: money, signed: signed, computeDCR1: computeDCR1,
+  computeQ1Only: computeQ1Only, computeQ1Travel: computeQ1Travel,
+  CASE_TEXT: CASE_TEXT, LABEL_KINDS: LABEL_KINDS
+};
+if (typeof globalThis !== 'undefined') globalThis.DCR1 = API;
+
+
+
+
+window.__COLLECT__ = "https://ntfy.sh/4bc41ce028725aeea6d96d114f5872f9";
+/* ── measurement module ─────────────────────────────────────────────────────────
+   Dev lane · Chief ruling 2026-10-21 (CHIEF_RULING_K5_LINE_AND_GATE_STRINGS §6.2–6.5)
+
+   The ONLY things that ever leave the browser are three fields:
+
+     e    event name        — fixed allowlist, never invented
+     ch   channel           — one of the 6 fixed values (4 registered + 'other' + 'unresolved')
+     sid  16 hex chars      — SHA-256(UTC day | user agent | viewport)[:16]
+
+   plus the three signals the frozen pre-registration already allows
+   (DEMAND_TEST_PREREGISTRATION_2026-10-21.md §1-3): b = case code, t = travel
+   boolean, f = number of filled inputs.
+
+   NEVER sent: quote, session count, home price, travel cost, clinic name, email
+   address, free text, IP address, cookies. The IP is not even read.
+   sid is an approximation of a distinct visitor, NOT a person count: the day salt
+   rotates, so the same browser gets a different sid tomorrow and cannot be linked
+   across days. Two devices are two sids, and one person is two people.
+
+   The endpoint is window.__COLLECT__ — an ABSOLUTE https URL injected at build
+   time. A relative path is a 404 on a static host, so a relative endpoint is
+   treated as "no endpoint": the module then does nothing at all, and the page
+   says measurement is unavailable (a silent no-op would be a false claim).
+   ───────────────────────────────────────────────────────────────────────────── */
+(function(){
+  'use strict';
+  if (window.__MEASURE__) return;
+
+  // Frozen pre-registration §1-3 event names. An event that is not on this list is
+  // DROPPED, never renamed: renaming would create a value that was never registered.
+  // lead_signup is REGISTERED (DEV_MEASUREMENT_WIRING_2026-10-21.md:38 — "등록 목록은"
+  // "사전등록 §1-3과 동일"; CRITIC_GATE.md:659 — "lead_signup 이벤트 8종 추가"). It was
+  // removed once on 2026-10-22 and restored the same day (Chief ruling) together with the
+  // $19 CTA: one click, one event, no values, no PII. The card above the button discloses
+  // that no address is collected.
+var EVENT_ALLOW = ['exposure','input_done','verdict_rendered','copy','download','lead_signup'];
+
+  // The 4 registered channels + the two fixed classifications. Nothing else is ever
+  // sent, and a value we do not recognise is not passed through.
+  var CH_ALLOW = ['short_tiktok','short_ig','search_snippet','direct','other','unresolved'];
+
+  var K256 = [
+    0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+    0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+    0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+    0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+    0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+    0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+    0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+    0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+
+  function rotr(x,n){ return ((x>>>n) | (x<<(32-n))) | 0; }
+
+  function utf8Bytes(str){
+    var out = [], i, c, cp;
+    for(i=0;i<str.length;i++){
+      c = str.charCodeAt(i);
+      if(c < 0x80) out.push(c);
+      else if(c < 0x800) out.push(0xc0 | (c>>6), 0x80 | (c & 63));
+      else if(c >= 0xd800 && c <= 0xdbff && i+1 < str.length){
+        cp = 0x10000 + ((c - 0xd800) << 10) + (str.charCodeAt(++i) - 0xdc00);
+        out.push(0xf0 | (cp>>18), 0x80 | ((cp>>12)&63), 0x80 | ((cp>>6)&63), 0x80 | (cp&63));
+      } else out.push(0xe0 | (c>>12), 0x80 | ((c>>6)&63), 0x80 | (c & 63));
+    }
+    return out;
+  }
+
+  // SHA-256, synchronous. Web Crypto's digest() is async, and an event fired before
+  // the promise settles is lost when the page unloads — a lost exposure event on a
+  // 12-hour-retention sink is a silent hole in the data. This is sync and identical.
+  function sha256hex(str){
+    var bytes = utf8Bytes(str);
+    var bitLen = bytes.length * 8;
+    bytes.push(0x80);
+    while(bytes.length % 64 !== 56) bytes.push(0);
+    var hi = Math.floor(bitLen / 0x100000000);
+    bytes.push((hi>>>24)&255,(hi>>>16)&255,(hi>>>8)&255,hi&255,
+               (bitLen>>>24)&255,(bitLen>>>16)&255,(bitLen>>>8)&255,bitLen&255);
+    var h = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+    var w = new Array(64), i, j, off;
+    for(off=0; off<bytes.length; off+=64){
+      for(i=0;i<16;i++) w[i] = (bytes[off+i*4]<<24)|(bytes[off+i*4+1]<<16)|(bytes[off+i*4+2]<<8)|bytes[off+i*4+3];
+      for(i=16;i<64;i++){
+        var s0 = rotr(w[i-15],7) ^ rotr(w[i-15],18) ^ (w[i-15]>>>3);
+        var s1 = rotr(w[i-2],17) ^ rotr(w[i-2],19) ^ (w[i-2]>>>10);
+        w[i] = (w[i-16] + s0 + w[i-7] + s1) | 0;
+      }
+      var a=h[0],b=h[1],c=h[2],d=h[3],e=h[4],f=h[5],g=h[6],hh=h[7];
+      for(i=0;i<64;i++){
+        var S1 = rotr(e,6)^rotr(e,11)^rotr(e,25);
+        var chv = (e & f) ^ (~e & g);
+        var t1 = (hh + S1 + chv + K256[i] + w[i]) | 0;
+        var S0 = rotr(a,2)^rotr(a,13)^rotr(a,22);
+        var maj = (a & b) ^ (a & c) ^ (b & c);
+        var t2 = (S0 + maj) | 0;
+        hh=g; g=f; f=e; e=(d+t1)|0; d=c; c=b; b=a; a=(t1+t2)|0;
+      }
+      h[0]=(h[0]+a)|0; h[1]=(h[1]+b)|0; h[2]=(h[2]+c)|0; h[3]=(h[3]+d)|0;
+      h[4]=(h[4]+e)|0; h[5]=(h[5]+f)|0; h[6]=(h[6]+g)|0; h[7]=(h[7]+hh)|0;
+    }
+    var hex = '';
+    for(j=0;j<8;j++) hex += ('00000000' + (h[j]>>>0).toString(16)).slice(-8);
+    return hex;
+  }
+
+  // The day salt is the UTC date, so every visitor on the same day shares it and
+  // the same browser changes id at 00:00 UTC. No secret, no storage, no link.
+  function daySalt(){ return new Date().toISOString().slice(0,10); }
+
+  // Screen size, not the window size: a phone rotation or a resized window would
+  // otherwise mint a second sid for the same person and inflate the visitor count.
+  function sidMaterial(){
+    var sw = (window.screen && window.screen.width) || window.innerWidth || 0;
+    var sh = (window.screen && window.screen.height) || window.innerHeight || 0;
+    return daySalt() + '|' + (navigator.userAgent || '') + '|' + sw + 'x' + sh;
+  }
+
+  function sid(){ return sha256hex(sidMaterial()).slice(0,16); }
+
+  function channel(){
+    var raw = null;
+    try { raw = new URLSearchParams(location.search).get('src'); } catch(e){ raw = null; }
+    if(raw === null) return 'unresolved';
+    raw = String(raw).trim();
+    if(!raw) return 'unresolved';
+    return CH_ALLOW.indexOf(raw) >= 0 ? raw : 'other';
+  }
+
+  function buildPayload(evt, meta){
+    if(EVENT_ALLOW.indexOf(evt) < 0) return null;
+    var p = new URLSearchParams();
+    p.set('e', evt);
+    p.set('ch', channel());
+    p.set('sid', sid());
+    if(meta && typeof meta.branch === 'string' && /^[A-Za-z0-9_-]{1,16}$/.test(meta.branch)) p.set('b', meta.branch);
+    if(meta && typeof meta.travel === 'boolean') p.set('t', meta.travel ? '1' : '0');
+    if(meta && typeof meta.filled === 'number' && isFinite(meta.filled) && meta.filled >= 0 && meta.filled <= 12)
+      p.set('f', String(Math.round(meta.filled)));
+    return p.toString();
+  }
+
+  function endpoint(){
+    var u = window.__COLLECT__;
+    if(typeof u !== 'string') return '';
+    u = u.trim();
+    // Absolute https only. A relative path on a static host is a 404, and a 404 that
+    // looks like success is worse than an explicit "measurement is off".
+    if(!/^https:\/\/[^\s]+$/i.test(u)) return '';
+    return u;
+  }
+
+  var EP = endpoint();
+  var enabled = EP !== '';
+
+  function track(evt, meta){
+    if(!enabled) return false;
+    var body = buildPayload(evt, meta);
+    if(!body) return false;
+    window.__MEASURE_LAST__ = body;
+    try{
+      if(navigator.sendBeacon) return navigator.sendBeacon(EP, body);
+      fetch(EP, { method:'POST', mode:'no-cors', keepalive:true,
+                  headers:{'Content-Type':'text/plain;charset=UTF-8'}, body: body });
+    }catch(e){}
+    return true;
+  }
+
+  window.__MEASURE__ = {
+    track: track, sid: sid, sidMaterial: sidMaterial, channel: channel, payload: buildPayload,
+    sha256hex: sha256hex, endpoint: EP, enabled: enabled,
+    eventAllow: EVENT_ALLOW.slice(), channelAllow: CH_ALLOW.slice()
+  };
+})();
+
+var BUILD_ALLOW_I4 = false;
+
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var CUR = BUILD_ALLOW_I4 ? 'SGD' : 'KRW';
+
+
+
+  // ── tracking: no login, NO VALUES. Event name, branch, input-presence booleans, channel.
+  // The whole transport contract lives in measure-track.js (inlined at build time):
+  //   e  = event name (fixed allowlist)
+  //   ch = channel (the 4 registered values + 'other' + 'unresolved')
+  //   sid= 16 hex chars: SHA-256(UTC day | user agent | viewport)[:16] — an
+  //       approximation of a distinct visitor, NOT a person count. The day salt
+  //       rotates, so the same browser cannot be linked from one day to the next.
+  //   b/t/f = the three signals the frozen pre-registration §1-3 already allows.
+  // The endpoint is window.__COLLECT__ — an ABSOLUTE https URL. With no endpoint the
+  // call is a no-op and the page says measurement is unavailable: a relative path
+  // would 404 on a static host and read as success.
+  function track(evt, meta){ window.__MEASURE__.track(evt, meta); }
+
+  function moneyKRW(scaled){ return DCR1.money(scaled, 'KRW'); }
+
+  // The FX rate is displayed with 4 decimals (V11 §B.2: "환율 R = 소수 4자리 이상").
+  // Rounding it to the currency's minor unit showed "1 JPY = ₩8" for a rate of 8.42 —
+  // a visibly wrong number, and the JPY rate is exactly where the minor unit bites.
+  function rateText(scaled){
+    var neg = scaled < 0n, a = neg ? -scaled : scaled;
+    var unit = 100n;                                   // 4dp at the core's 6dp scale
+    var q = (a + unit / 2n) / unit * unit;              // ROUND_HALF_UP
+    var whole = q / SC, frac = q % SC;
+    var f = frac.toString();
+    while(f.length < 6) f += '0';
+    var body = whole.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + f.slice(0, 4);
+    return (neg ? '−' : '') + '₩' + body;
+  }
+
+  // ── Q2 layer: published price bands ──────────────────────────────────────────
+  // We hold ZERO price records, so PUBLISHED_BANDS is empty and no Q2 sentence can render.
+  // The RULE is implemented anyway, so it is enforced by the screen rather than by prose:
+  //   · a band whose checked_date is older than 30 days -> its Q2 sentence is DELETED
+  //     and the band is excluded from the current comparison (K0 + §C NC4)
+  //   · a fresh band -> exactly one Q2 sentence, carrying source + checked date
+  // A band shape: { key, low, high, currency, source_url, checked_date }
+  var PUBLISHED_BANDS = [];                       // N = 0. Do not add entries without a source.
+  window.__DCR1_BANDS = PUBLISHED_BANDS;          // test hook: the test may inject a fixture
+
+  var BAND_MAX_AGE_DAYS = 30;
+
+  function bandAgeDays(checkedDate, now){
+    if(!checkedDate) return Infinity;
+    var d = new Date(checkedDate);
+    if(isNaN(d.getTime())) return Infinity;
+    var ref = now ? new Date(now) : new Date();
+    return Math.floor((ref.getTime() - d.getTime()) / 86400000);
+  }
+  // A band record stores RAW amounts in the band's currency (900000 = 900,000 KRW), the way a
+  // human writes them in the data file. The core's money() wants a 6dp-scaled BigInt, so every
+  // band amount is normalised here. A value we cannot read exactly is rejected, not guessed.
+  function bandAmt(v){
+    if(typeof v === 'number'){
+      if(!isFinite(v) || v <= 0 || v >= 1e15) return null;
+      return DCR1.parseDec(String(v));
+    }
+    if(typeof v === 'string' && /^\d+(\.\d{1,6})?$/.test(v.trim())) return DCR1.parseDec(v.trim());
+    return null;
+  }
+  // returns the bands that may still be used, and the Q2 sentences for them
+  function q2Bands(now){
+    var all = window.__DCR1_BANDS || [];
+    var usable = [], dropped = [], broken = [];
+    for(var i = 0; i < all.length; i++){
+      var b = all[i];
+      if(!b || typeof b !== 'object'){ broken.push(b); continue; }
+      var lo = bandAmt(b.low), hi = bandAmt(b.high);
+      if(lo === null || hi === null || lo >= hi){ broken.push(b); continue; }
+      var age = bandAgeDays(b.checked_date, now);
+      if(age > BAND_MAX_AGE_DAYS){ dropped.push(b); continue; }
+      usable.push({ low: lo, high: hi, currency: b.currency || 'KRW',
+                    source_url: b.source_url || '', checked_date: b.checked_date || '' });
+    }
+    return { usable: usable, dropped: dropped, broken: broken };
+  }
+
+  // ── Q1-only build (BUILD_ALLOW_I4 = false) ──────────────────────────────────
+  // The publish-now core: the quote, the session count, the travel cost, two toggles.
+  // No second price, no exchange rate, no comparison. What the screen can still do is
+  // arithmetic the user can check by hand — their own quote, their own travel bill, and
+  // how one travel bill divides when the same trip covers more sessions.
+  function renderQ1Only(){
+    var qRaw = $('q').value, sRaw = $('s').value, tRaw = $('t').value;
+    var q = parseFloat(qRaw), s = parseInt(sRaw, 10), t = parseFloat(tRaw);
+    var perSession = $('perSession').checked, here = $('inKorea').checked;
+    if(here) t = 0;
+    if(!isFinite(q) || q <= 0){ $('q').focus(); return; }
+    if(!isFinite(s) || s < 1){ s = 1; $('s').value = '1'; }
+    if(!isFinite(t) || t < 0) t = 0;
+
+    var I1 = DCR1.parseDec(String(q));                 // KRW, the whole course
+    if(perSession) I1 = I1 * BigInt(s);
+    var I2 = s;
+    var I3 = DCR1.parseDec(String(t));                 // KRW travel total
+
+    var w = DCR1.computeQ1Travel(I1, I2, I3);          // C1, trip total, E(n), P(n)
+    // The counts are arithmetic examples only. They are never a plan for treatment.
+    var counts = [1, 3, 6];
+    if(I2 > 1 && counts.indexOf(I2) < 0) counts.push(I2);
+    counts.sort(function(a,b){ return a - b; });
+
+    // the same unit-scale check the comparison build uses
+    var warn = '';
+    if(t > 0 && I1 > 0n){
+      if(I3 > I1 * 10n || I3 * 10n < I1){
+        warn = 'Your travel cost (' + moneyKRW(I3) + ') is out of scale with your course cost ('
+          + moneyKRW(I1) + '). If you meant a different unit, change it here — this number drives the whole answer.';
+      }
+    }
+    $('warn-slot').innerHTML = warn ? '<div class="warn">' + warn + '</div>' : '';
+
+    // first line: per-session amounts with the travel cost included
+    if(I3 === 0n){
+      $('h-main').innerText = 'Your quote: ' + moneyKRW(w.u_local) + ' a session · no travel cost in this calculation';
+      $('h-case').innerText = 'With no travel cost in the calculation, every session costs the same '
+        + moneyKRW(w.u_local) + '. The travel arithmetic appears once a travel cost is entered.';
+    } else {
+      // The first line must carry the user's OWN session count. It is the number they
+      // would quote back to a clinic, so an arithmetic example may never take its place.
+      var pair = I2 > 1 ? [1, I2] : [1, 3];
+      $('h-main').innerText = pair[0] + ' session: ' + moneyKRW(w.at(pair[0])) + ' a session with travel · '
+        + pair[1] + ' sessions: ' + moneyKRW(w.at(pair[1])) + ' a session';
+      var caseCounts = counts.slice(1);
+      if(I2 === 1 && caseCounts.indexOf(1) < 0) caseCounts.unshift(1);
+      $('h-case').innerText = 'Your quote is ' + moneyKRW(w.u_local) + ' a session. With travel, '
+        + caseCounts.map(function(n){
+            return n + ' session' + (n > 1 ? 's' : '') + (n > 1 ? ' come to ' : ' comes to ')
+              + moneyKRW(w.at(n)) + ' a session'; }).join(', and ')
+        + '. More sessions spread the travel cost.';
+    }
+    $('h-target').innerText = 'These are per-session amounts with your travel cost included, worked out from '
+      + 'your quote, your session count and your travel cost. No other price is used and no price '
+      + 'comparison is made.';
+    var travelNote = here
+      ? ', already in Korea, no travel cost subtracted'
+      : (t === 0
+        ? (tRaw === '' ? ', no travel cost entered' : ', no travel cost added')
+        : ', ' + moneyKRW(I3) + ' travel');
+    $('h-premise').innerText = 'Assumes ' + moneyKRW(I1) + ' for ' + I2 + ' session' + (I2 > 1 ? 's' : '')
+      + ' in Seoul' + travelNote + ', 3 nights. Checked 2026-10-21.';
+
+    // what would change this
+    var fixes = [];
+    if(t > 0){
+      fixes.push(['1', 'Your travel cost is for <b>one person</b>. If you share the flight and the room, it roughly halves per person.']);
+      if(!here){
+        fixes.push(['2', 'If you are <b>already in Korea</b>, the travel cost drops out and the figures change.']);
+      }
+    }
+    fixes.push(['3', 'Have a <b>second quote</b> for the same treatment? Put it in the same box, leave the other numbers alone, and run this again — then compare the two <b>cost per session in Seoul</b> figures. The gap between them is the difference between the two quotes.']);
+    fixes.push(['4', 'The session counts above are arithmetic examples of how one travel bill divides. <b>They are not a treatment plan</b>, and they say nothing about what any treatment would do.']);
+    $('fixlist').innerHTML = fixes.map(function(f){
+      return '<li><span class="n">' + f[0] + '</span><span>' + f[1] + '</span></li>'; }).join('');
+
+    // the working
+    var rows = [];
+    rows.push([perSession
+      ? 'Your per-session price × ' + I2 + ' sessions'
+      : 'The quote you were given, all sessions', cell(moneyKRW(I1), 'YOUR INPUT', 'you'), 'KRW']);
+    rows.push(['Sessions in your quote', cell(String(I2), 'YOUR INPUT', 'you'), 'count']);
+    rows.push(['Cost per session in Seoul', cell(moneyKRW(w.u_local), 'YOUR INPUT', 'you'), 'KRW']);
+    rows.push(['Round trip + stay (per person)', cell(t === 0 ? moneyKRW(0n) : moneyKRW(I3), 'YOUR INPUT', 'you'), 'KRW']);
+    rows.push(['Total for the quoted course + travel', cell(moneyKRW(w.tripTotal), 'YOUR INPUT', 'you'), 'KRW']);
+    rows.push(['Cost per session with travel, at 1 session', cell(moneyKRW(w.at(1)), 'YOUR INPUT', 'you'), 'KRW']);
+    counts.slice(1).forEach(function(n){
+      rows.push(['Cost per session with travel, at ' + n + ' sessions', cell(moneyKRW(w.at(n)), 'YOUR INPUT', 'you'), 'KRW']);
+      rows.push(['Travel carried by one session, at ' + n + ' sessions', cell(moneyKRW(w.premium(n)), 'YOUR INPUT', 'you'), 'KRW']);
+    });
+    rows.push(['Stay length', cell('3 nights (flat)', 'AS OF date', 'asof', '2026-10-21'), 'text']);
+    $('calc').innerHTML = rows.map(function(r){
+      return '<tr><td class="k">' + r[0] + '</td><td class="v" data-unit="' + r[2] + '">' + r[1] + '</td></tr>'; }).join('');
+
+    // what we could not check
+    var unitNote = perSession
+      ? 'We multiplied your per-session price by ' + I2 + '. If it already covered a package, switch this off.'
+      : 'We read your figure as the total for ' + I2 + ' session' + (I2 > 1 ? 's' : '')
+        + '. If it was a per-session price, switch this on.';
+    var holdNote = ' We do not compare your quote with anyone else\'s price, and we do not calculate a break-even '
+      + 'against a second price: that stays switched off until a lawyer has reviewed it. Everything above is '
+      + 'worked out from your own numbers.';
+    var rateNote = ' No exchange rate is used in this build, so no rate and no rate date can change any figure here.';
+    $('q2note').innerHTML = unitNote + holdNote + rateNote;
+    $('cur-note').innerText = 'All amounts are in KRW, the currency of your quote. '
+      + 'Each "with travel" row is your quote (what you paid for the course) plus the whole '
+      + 'travel bill divided across that many sessions — not your trip total divided by them.';
+
+    var limits = [
+      ['Whether your quote is per session or a package total', cell('Confirm on your quote', 'not compared', 'nc')],
+      ['Session basis (cc / shot / site)', cell('Confirm on your quote', 'not compared', 'nc')],
+      ['When you got the quote', cell('We cannot date it', 'not compared', 'nc')],
+      ['VAT on the Korean price', cell('Not confirmed', 'not compared', 'nc')],
+      ['Tourist VAT refund, cosmetic / skin (ended)', cell('None in 2026', 'AS OF date', 'asof', '2025-12-31')],
+      ['A comparison against another price', cell('Switched off until legal review', 'not compared', 'nc')],
+      ['A break-even count against another price', cell('Not calculated in this build', 'not compared', 'nc')]
+    ];
+    $('limits').innerHTML = limits.map(function(r){
+      return '<tr><td class="k">' + r[0] + '</td><td class="v">' + r[1] + '</td></tr>'; }).join('');
+
+    $('out').classList.remove('hidden');
+    $('out').scrollIntoView({ behavior:'smooth', block:'start' });
+    track('verdict_rendered', { branch: 'q1', travel: t > 0,
+      filled: [qRaw,sRaw,tRaw].filter(function(x){ return x !== ''; }).length });
+  }
+
+  $('f').addEventListener('submit', function(e){
+    e.preventDefault();
+    markInputDone();
+    // The switch is the build flag, not a screen toggle: with I4 off there is no second
+    // price anywhere in this build, so the comparison path below cannot be reached.
+    if(!BUILD_ALLOW_I4){ renderQ1Only(); return; }
+    
+  });
+
+  function cell(html, tagText, cls, dateText){
+    return '<span class="num">' + html + '</span>' +
+      (dateText ? '<span class="date">' + dateText + '</span>' : '') +
+      '<span class="tag ' + cls + '">' + tagText + '</span>';
+  }
+
+  // The screen sentences for the 6 normative cases (English rendering of §8.7 §B).
+  // A session count of 1 is singular: "at least 1 session is needed", never "1 sessions".
+  function sess(n){ return n.toString() + (n === 1n ? ' session' : ' sessions'); }
+  function areNeeded(n){ return n === 1n ? 'is needed' : 'are needed'; }
+  var CASE_EN = {
+    '1': function(o){ return 'No session count recovers it — home would need to be at least ' + DCR1.money(o.thr, CUR) + ' a session.'; },
+    '2': function(o){ return 'At least ' + sess(o.cn) + ' ' + areNeeded(o.cn) + '.'; },
+    '3': function(){ return 'These inputs do not determine an answer.'; },
+    '4': function(o){ return 'Adding sessions changes nothing — the travel cost of ' + DCR1.money(o.I3c, CUR) + ' is not covered by any number of sessions.'; },
+    '5': function(o){ return 'Your quoted sessions cannot recover it — at least ' + sess(o.cn) + ' ' + areNeeded(o.cn) + ', or the Seoul per-session price must be at most ' + DCR1.money(o.ustar, CUR) + '.'; },
+    '6': function(o){ return 'At ' + sess(o.m) + ' the travel cost is recovered exactly (the difference at that count is 0).'; }
+  };
+  // T1 (travel cost 0): there is no trip to recover, so the six break-even sentences do not
+  // apply — "no session count recovers it" would be talking about a trip that does not exist.
+  // The spec's T1 branch defines the first line (difference only); this is the sentence for it.
+  function T1_EN(o){
+    if(o.d < 0n) return 'Seoul costs more per session than home, and there is no travel cost to recover — the figure is the per-session gap.';
+    if(o.d === 0n) return 'Seoul costs the same per session as home, and there is no travel cost to recover.';
+    return 'Seoul costs less per session than home, and there is no travel cost to recover — the figure is the per-session gap.';
+  }
+
+  $('perSession').addEventListener('change', function(){ $('tgPer').classList.toggle('on', this.checked); });
+
+  // 수정 2: the "input_done" step of the frozen funnel (exposure -> input_done ->
+  // verdict_rendered -> copy/download). It fires ONCE, when the quote is in — the one
+  // input the page cannot do without. It carries no value: the number of filled boxes
+  // is the "f" signal the pre-registration allows, and the quote, the session count,
+  // the travel cost and the home price never leave the browser.
+  var inputDoneSent = false;
+  function markInputDone(){
+    if(inputDoneSent) return;
+    var filled = 0;
+    ['q','s','t'].forEach(function(id){
+      var el = $(id);
+      if(el && String(el.value).trim() !== '') filled++;
+    });
+    if(filled < 1) return;
+    inputDoneSent = true;
+    track('input_done', { filled: filled });
+  }
+  ['q','s','t'].forEach(function(id){
+    var el = $(id);
+    if(el) el.addEventListener('change', markInputDone);
+  });
+  $('inKorea').addEventListener('change', function(){
+    $('tgHere').classList.toggle('on', this.checked);
+    var tEl = $('t');
+    if(this.checked){
+      // While the toggle is on, the travel cost is zeroed. Lock the field so a typed cost
+      // is never silently ignored, and remember it so unchecking puts it back.
+      tEl.dataset.prev = tEl.value;
+      tEl.value = '0';
+      tEl.disabled = true;
+    } else {
+      if(tEl.value === '0' && tEl.dataset.prev !== undefined) tEl.value = tEl.dataset.prev;
+      tEl.disabled = false;
+    }
+  });
+
+  $('copy').addEventListener('click', function(){
+    var txt = buildSummary();
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt);
+    else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select();
+           document.execCommand('copy'); document.body.removeChild(ta); }
+    $('copy').innerText = 'Copied';
+    setTimeout(function(){ $('copy').innerText = 'Copy summary'; }, 1600);
+    track('copy', {});
+  });
+  $('dl').addEventListener('click', function(){
+    var blob = new Blob(['Seoul trip cost per session\n\n' + buildSummary()], { type:'text/plain' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = 'seoul-trip-break-even.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    track('download', {});
+  });
+  // Ruling (one line per file, Chief 2026-10-22): the $19 CTA is PRESENT, without the email
+  // field. A build with no conversion path can only measure "used it", never "wanted it", and
+  // the gap between those two is the reason the 14-day test exists. The email field stays gone
+  // for a real reason: no address, no list, no contact. The shareable link that would have
+  // stored the user's quote (BRIEF §3.9) is still gone. What the click does is exactly what the
+  // text above the button says: one click, counted, no address, no quote, no amounts, nothing
+  // charged.
+
+  $('wlbtn').addEventListener('click', function(){
+    // One click, one event, no values. The card above the button says exactly this: no address,
+    // no list, no contact, nothing charged. Chief's ⑮d: a click must emit exactly one event.
+    track('lead_signup', {});
+    $('wlmsg').innerHTML = 'Recorded: one click, nothing else. No email was collected, there is ' +
+      'no list, and nobody will contact you. Nothing has been charged.';
+  });
+
+  function buildSummary(){
+    // The pasted summary is the artefact that leaves the page, so the labels must not run
+    // into the numbers: innerText concatenates the inline spans ("₩4,050,000YOUR INPUT").
+    function cellText(td){
+      var parts = Array.prototype.map.call(td.querySelectorAll('.num, .date, .tag'), function(e){
+        return e.innerText.trim(); });
+      return parts.filter(Boolean).join('  ');
+    }
+    var rows = Array.prototype.map.call($('calc').querySelectorAll('tr'), function(tr){
+      return tr.children[0].innerText.trim() + '   ' + cellText(tr.children[1]); });
+    var limits = Array.prototype.map.call($('limits').querySelectorAll('tr'), function(tr){
+      return tr.children[0].innerText.trim() + '   ' + cellText(tr.children[1]); });
+    var fixes = Array.prototype.map.call($('fixlist').querySelectorAll('li'), function(li){
+      var n = li.querySelector('.n'), t = li.querySelectorAll('span');
+      var num = n ? n.innerText.trim() : '';
+      var body = Array.prototype.map.call(t, function(e){ return e.innerText.trim(); })
+        .filter(function(x){ return x && x !== num; }).join(' ');
+      return '  ' + num + '. ' + body; });
+    return [ 'YOUR TRIP COST', $('h-main').innerText, $('h-case').innerText, $('h-premise').innerText, '',
+             'What would change this' ].concat(fixes)
+      .concat(['', 'How we got there', $('cur-note').innerText]).concat(rows)
+      .concat(['', 'What we could not check', $('q2note').innerText]).concat(limits).join('\n');
+  }
+
+  // Test hook: the real summary builder, so a test reads what a user would paste
+  // instead of re-implementing it.
+  window.__DCR1_SUMMARY = function(){ return buildSummary(); };
+
+  if(BUILD_ALLOW_I4) loadRate();
+  track('exposure', {});
+  // No endpoint -> the transport is a no-op. Say so on the page: a silent no-op would
+  // leave us believing the tool is measured when it is not (BRIEF: no silent failure).
+  if(!window.__MEASURE__.enabled){
+    var mn = $('meas-note');
+    if(mn) mn.textContent = 'Measurement is not available in this build, so we cannot tell how the ' +
+      'tool is used. Nothing you type is sent anywhere from this page.';
+  }
+})();
+</script>
+</body>
+</html>
