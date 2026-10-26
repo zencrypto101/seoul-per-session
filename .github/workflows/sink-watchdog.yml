@@ -1,0 +1,39 @@
+name: phase-a sink watchdog
+
+# The collector cannot report its own death. This runs on an independent
+# schedule and fails when the heartbeat stops moving, so "no visitors" and
+# "no data" never look the same in the Actions tab.
+
+on:
+  schedule:
+    - cron: "47 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Heartbeat must be younger than 6 hours
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          from datetime import datetime, timezone
+
+          MAX_HOURS = 6
+          with open("data/last_poll.json", encoding="utf-8") as f:
+              hb = json.load(f)
+          if hb.get("status") != "ok":
+              print(f"collector heartbeat status={hb.get('status')!r} error={hb.get('error')!r}")
+              sys.exit(1)
+          last = datetime.strptime(hb["polled_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+          age = (datetime.now(timezone.utc) - last).total_seconds() / 3600
+          print(f"heartbeat {hb['polled_utc']} age={age:.2f}h threshold={MAX_HOURS}h")
+          if age > MAX_HOURS:
+              print("FAIL: collector is not running; events older than the topic "
+                    "retention window are being lost")
+              sys.exit(1)
+          PY
