@@ -1,1 +1,28 @@
 ntfy_time_utc,publisher_time_utc,ntfy_id,e,ch,sid,extra,body
+2026-10-26T10:41:22Z,2026-10-26T10:41:22Z,0clVVE8kRhD2,exposure,unresolved,84e2497e018c50da,,e=exposure&ch=unresolved&sid=84e2497e018c50da
+2026-10-26T10:41:25Z,2026-10-26T10:41:25Z,n9AlbMzFZdE2,exposure,unresolved,84e2497e018c50da,,e=exposure&ch=unresolved&sid=84e2497e018c50da
+2026-10-26T10:41:27Z,2026-10-26T10:41:27Z,Bm3a8trwkOQP,exposure,unresolved,3f7cc17045230d99,,e=exposure&ch=unresolved&sid=3f7cc17045230d99
+2026-10-26T10:45:09Z,2026-10-26T10:45:09Z,iY8AhjAmKyJI,exposure,unresolved,f89571871e2eb9c6,,e=exposure&ch=unresolved&sid=f89571871e2eb9c6
+2026-10-26T10:45:10Z,2026-10-26T10:45:10Z,4hG8w1HkJWr2,input_done,unresolved,f89571871e2eb9c6,f=3,e=input_done&ch=unresolved&sid=f89571871e2eb9c6&f=3
+2026-10-26T10:45:10Z,2026-10-26T10:45:10Z,Heek8yRvW8iT,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=1&f=3
+2026-10-26T10:46:06Z,2026-10-26T10:46:06Z,i2XAuQ56DaSF,exposure,unresolved,f89571871e2eb9c6,,e=exposure&ch=unresolved&sid=f89571871e2eb9c6
+2026-10-26T10:46:07Z,2026-10-26T10:46:07Z,tZu7x39MTHkZ,input_done,unresolved,f89571871e2eb9c6,f=3,e=input_done&ch=unresolved&sid=f89571871e2eb9c6&f=3
+2026-10-26T10:46:07Z,2026-10-26T10:46:07Z,1mfqAN7Oq477,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=1&f=3
+2026-10-26T10:50:58Z,2026-10-26T10:50:58Z,SS0jQmwc1Asy,exposure,unresolved,f89571871e2eb9c6,,e=exposure&ch=unresolved&sid=f89571871e2eb9c6
+2026-10-26T10:50:59Z,2026-10-26T10:50:59Z,75n6OHCpBevp,input_done,unresolved,f89571871e2eb9c6,f=3,e=input_done&ch=unresolved&sid=f89571871e2eb9c6&f=3
+2026-10-26T10:50:59Z,2026-10-26T10:50:59Z,Qfrg6xzCeh4o,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=1&f=3
+2026-10-26T10:51:22Z,2026-10-26T10:51:22Z,jQP3ls6Uumqr,exposure,unresolved,f89571871e2eb9c6,,e=exposure&ch=unresolved&sid=f89571871e2eb9c6
+2026-10-26T10:51:23Z,2026-10-26T10:51:23Z,aVHjHgPHhHua,input_done,unresolved,f89571871e2eb9c6,f=3,e=input_done&ch=unresolved&sid=f89571871e2eb9c6&f=3
+2026-10-26T10:51:23Z,2026-10-26T10:51:23Z,boM5i8cYq8cy,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=1&f=3
+2026-10-26T10:51:33Z,2026-10-26T10:51:33Z,zOGrRruO9taD,exposure,unresolved,f89571871e2eb9c6,,e=exposure&ch=unresolved&sid=f89571871e2eb9c6
+2026-10-26T10:51:34Z,2026-10-26T10:51:34Z,J5MB4hgslZj7,input_done,unresolved,f89571871e2eb9c6,f=3,e=input_done&ch=unresolved&sid=f89571871e2eb9c6&f=3
+2026-10-26T10:51:34Z,2026-10-26T10:51:34Z,3Rbn7bsMrBBC,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=1&f=3
+2026-10-26T10:51:44Z,2026-10-26T10:51:44Z,YcQ47jMF0YXs,exposure,unresolved,f89571871e2eb9c6,,e=exposure&ch=unresolved&sid=f89571871e2eb9c6
+2026-10-26T10:51:44Z,2026-10-26T10:51:44Z,6Ckrs89Cd2ft,input_done,unresolved,f89571871e2eb9c6,f=3,e=input_done&ch=unresolved&sid=f89571871e2eb9c6&f=3
+2026-10-26T10:51:44Z,2026-10-26T10:51:44Z,lcfKt2nGZIPR,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=1&f=3
+2026-10-26T10:51:55Z,2026-10-26T10:51:55Z,mf771Twgxbvq,exposure,unresolved,f89571871e2eb9c6,,e=exposure&ch=unresolved&sid=f89571871e2eb9c6
+2026-10-26T10:51:57Z,2026-10-26T10:51:57Z,GnVwIZ9erfmB,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=1&f=3
+2026-10-26T10:51:57Z,2026-10-26T10:51:57Z,6FMF2F9fFM8W,input_done,unresolved,f89571871e2eb9c6,f=3,e=input_done&ch=unresolved&sid=f89571871e2eb9c6&f=3
+2026-10-26T10:54:20Z,2026-10-26T10:54:20Z,BRcGkD1qt0ut,exposure,unresolved,f89571871e2eb9c6,,e=exposure&ch=unresolved&sid=f89571871e2eb9c6
+2026-10-26T10:54:21Z,2026-10-26T10:54:21Z,UTdZIS17VMMy,input_done,unresolved,f89571871e2eb9c6,f=3,e=input_done&ch=unresolved&sid=f89571871e2eb9c6&f=3
+2026-10-26T10:54:21Z,2026-10-26T10:54:21Z,7uX7GNcr8JlA,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=1&f=3
