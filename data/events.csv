@@ -214,3 +214,4 @@ ntfy_time_utc,publisher_time_utc,ntfy_id,e,ch,sid,extra,body
 2026-10-26T11:34:05Z,2026-10-26T11:34:05Z,7iyYF2nsGoB8,input_done,unresolved,f89571871e2eb9c6,f=3,e=input_done&ch=unresolved&sid=f89571871e2eb9c6&f=3
 2026-10-26T11:34:05Z,2026-10-26T11:34:05Z,Twj0XFii82CN,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=1&f=3
 2026-10-26T11:34:06Z,2026-10-26T11:34:06Z,MDbAIE0oAbgT,verdict_rendered,unresolved,f89571871e2eb9c6,b=q1 f=3 t=0,e=verdict_rendered&ch=unresolved&sid=f89571871e2eb9c6&b=q1&t=0&f=3
+2026-10-26T21:11:43Z,2026-10-26T21:11:43Z,1spipkyovaMa,exposure,unresolved,1a8ee9444c2b5d34,,e=exposure&ch=unresolved&sid=1a8ee9444c2b5d34
