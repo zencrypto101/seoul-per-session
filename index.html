@@ -3,189 +3,231 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How much does your Seoul treatment trip cost per session?</title>
+<title>What one session actually costs.</title>
+<meta name="theme-color" content="#FBFAF7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href='data:application/manifest+json,{"name":"Seoul Per Session","short_name":"Per Session","start_url":"./","display":"standalone","background_color":"%23FBFAF7","theme_color":"%23FBFAF7"}'>
 <style>
-  :root{ --ink:#12161c; --muted:#5b6672; --line:#dfe4ea; --bg:#fff; --neu:#5b6672; --neubg:#f1f3f6;
-         --warn:#8a5a00; --warnbg:#fdf5e6; --warnline:#f0d9a8; }
+  :root{
+    --paper:#FBFAF7; --card:#FFFFFF; --ink:#14171C; --ink-2:#5A5F66; --ink-3:#8A8F96;
+    --rule:#E4E0D7; --rule-2:#D5D0C4; --inverse:#F7F5EF; --inverse-2:#A8ADB4;
+    --accent:#1F6F5C; --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --warn:#8A5A00; --warnbg:#FDF5E6; --warnline:#F0D9A8;
+    --muted:#5A5F66; --line:#E4E0D7; --bg:#FBFAF7; --neu:#5A5F66; --neubg:#F1F3F6;
+  }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-text-size-adjust:100%}
-  .wrap{max-width:520px;margin:0 auto;padding:14px 16px 40px}
-  h1{font-size:23px;line-height:1.22;margin:2px 0 6px;letter-spacing:-.2px}
-  .sub{color:var(--muted);font-size:14.5px;margin:0 0 14px}
-  .fld{margin:0 0 11px}
-  .fld label{display:block;font-size:14px;font-weight:600;margin:0 0 4px}
-  .hint{display:block;font-size:12.5px;color:var(--muted);margin:2px 0 0}
-  input[type=number],input[type=text],input[type=email],select{width:100%;padding:11px 12px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);min-height:44px}
-  input:focus,select:focus{outline:2px solid #1a73e8;outline-offset:1px;border-color:#1a73e8}
-  input:disabled{background:#f1f3f6;color:var(--muted);-webkit-text-fill-color:var(--muted)}
-  .row{display:flex;gap:9px}
-  .row>*{flex:1}
-  .toggles{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
-  .tg{display:flex;align-items:center;gap:7px;font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:8px 12px;cursor:pointer;background:#fff;min-height:40px}
-  .tg input{width:17px;height:17px;min-height:0;margin:0;accent-color:#12161c}
-  .tg.on{background:#eef3fb;border-color:#c9d4e6}
-  .btn{width:100%;padding:14px;font-size:16.5px;font-weight:700;border:0;border-radius:11px;background:var(--ink);color:#fff;cursor:pointer;min-height:48px}
+  body{font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);-webkit-text-size-adjust:100%}
+  .wrap{max-width:520px;margin:0 auto;padding:16px 16px 40px}
+
+  .hd{font-size:12.5px;font-weight:600;color:var(--ink-2);letter-spacing:.02em;margin:0 0 10px}
+
+  .hero{margin:0 0 12px}
+  .kick{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:0 0 8px}
+  h1{font-size:30px;line-height:1.12;letter-spacing:-.02em;margin:0 0 8px;font-weight:600}
+  .sub{font-size:15.5px;line-height:1.42;color:var(--ink-2);margin:0 0 8px;max-width:34ch}
+  .proof{font-size:12px;color:var(--ink-3);margin:0}
+
+  .card{border:1px solid var(--rule);border-radius:14px;padding:12px;margin:0 0 14px;background:var(--card)}
+  .microlabel{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:0 0 10px}
+  .row{display:flex;gap:9px}.row>*{flex:1}
+  .fld{margin:0 0 12px}
+  .fld label{display:block;font-size:13px;font-weight:600;margin:0 0 4px}
+  .rates{font-size:12.5px;color:var(--ink-3);margin:0 0 11px}
+  .sent{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0 0 10px;font-size:16px}
+  .sent label{font-size:13px;color:var(--ink-2)}
+  .won{font-family:var(--mono);color:var(--ink-3);font-size:16px;margin-right:-3px}
+  .tail{font-size:13px;color:var(--ink-2)}
+  input[type=number],input[type=text],input[type=email],select{font-family:var(--mono);font-variant-numeric:tabular-nums;padding:10px 11px;font-size:16px;border:1px solid var(--rule-2);border-radius:10px;background:#fff;color:var(--ink);min-height:44px}
+  .sent input{width:130px}
+  #t{width:150px}
+  input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+  input:disabled{background:#F1F3F6;color:var(--ink-2);-webkit-text-fill-color:var(--ink-2)}
+  .hint{display:block;font-size:13px;color:var(--ink-3);margin:-4px 0 12px;line-height:1.4}
+  .toggles{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+  .tg{display:flex;align-items:center;gap:7px;font-size:13px;border:1px solid var(--rule);border-radius:999px;padding:8px 12px;cursor:pointer;background:#fff;min-height:40px}
+  .tg input{width:17px;height:17px;min-height:0;margin:0;accent-color:var(--ink)}
+  .tg.on{background:#F1F3F6;border-color:var(--rule-2)}
+  .btn{width:100%;padding:14px;font-size:16px;font-weight:600;border:1px solid var(--rule-2);border-radius:11px;background:#fff;color:var(--ink);cursor:pointer;min-height:48px}
   .btn:active{opacity:.86}
-  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);font-size:14.5px;font-weight:600;padding:10px 12px;min-height:42px}
-  .btn.pay{background:#0b5cab}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--rule);font-size:14.5px;font-weight:600;padding:10px 12px;min-height:42px}
+  .btn.pay{background:#fff;border:1px solid var(--rule-2);color:var(--ink)}
+  .exline{font-size:13px;color:var(--ink-3);margin:12px 0 0;line-height:1.45}
+  .ex{background:none;border:0;padding:0;font:inherit;font-size:13px;color:var(--ink);text-decoration:underline;cursor:pointer}
+  #empty-msg{font-size:13px;color:var(--ink-2);margin:10px 0 0}
+
   #out{margin-top:16px}
-  .headline{border:1px solid var(--line);border-radius:12px;padding:14px 15px;margin:0 0 11px;background:#fbfcfd}
-  .headline .k{font-size:12.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin:0 0 5px}
-  .headline .main{font-size:19px;font-weight:800;line-height:1.35;letter-spacing:-.2px;margin:0 0 6px}
-  .headline .case{font-size:16px;font-weight:700;margin:0 0 6px}
-  .headline .target{font-size:13.5px;color:var(--muted);margin:0 0 6px;line-height:1.45}
-  .headline .premise{font-size:13px;color:var(--muted);line-height:1.4;margin:0}
-  .disclaim{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;border:1px solid var(--line);background:var(--neubg);color:var(--neu);margin:0 0 11px}
-  .card{border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin:0 0 11px}
+  .verdict{background:var(--ink);color:var(--inverse);border-radius:16px;padding:18px;margin:0 0 14px;animation:rise .16s ease-out}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.verdict{animation:none}}
+  .verdict .k{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--inverse-2);margin:0 0 4px}
+  /* Design §2.4c (2026-10-26): the equation is a two-column grid, not one inline run.
+     Inline flow wrapped mid-term at 390px — the operator stranded and the total took its
+     own line. Every cell is placed by an explicit grid-row in renderQ1, so auto-placement
+     cannot slide '+' beside a label it does not belong to while the figures still line up. */
+  .verdict .big{display:grid;grid-template-columns:24px auto;justify-content:end;align-items:center;column-gap:9px;row-gap:0;margin:0 0 6px;font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.005em}
+  .verdict .big .op{grid-column:1;font-size:15px;line-height:1.2;color:var(--inverse-2);text-align:right}
+  .verdict .big .op.eq{font-size:22px}
+  .verdict .big .k{grid-column:2;text-align:right;font-size:19px;line-height:1.2;white-space:nowrap}
+  .verdict .big .k.tot{font-size:clamp(32px,9.5vw,40px);line-height:1.05;letter-spacing:-.02em}
+  /* The label spans both columns. Left in column 2 it set the column width, which
+     shoved the operators ~90px left of the figures and opened a gap in every row. */
+  .verdict .big .u{grid-column:1 / -1;text-align:right;font-size:13px;line-height:1.3;color:var(--inverse-2);padding:0 0 13px}
+  .verdict .at{font-size:13.5px;color:var(--inverse-2);margin:0 0 16px}
+  .stmt{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:14px;border-top:1px solid #2A2F36;padding-top:12px;margin:0 0 14px}
+  .stmt .r{display:flex;justify-content:space-between;gap:10px;padding:3px 0;color:var(--inverse)}
+  .stmt .r span:last-child{white-space:nowrap}
+  .stmt .lbl{color:var(--inverse-2);font-size:13px}
+  .stmt .tot{border-top:1px solid #2A2F36;margin-top:8px;padding-top:9px;font-weight:600}
+  .verdict .note{font-size:12.5px;line-height:1.45;color:var(--inverse-2);margin:0 0 14px}
+  .acts{display:flex;gap:9px}
+  .acts button{flex:1;padding:12px;font-size:14.5px;font-weight:600;border-radius:10px;cursor:pointer;min-height:46px}
+  .verdict .acts .copy{border:1px solid var(--inverse);background:var(--inverse);color:var(--ink)}
+  .verdict .acts .dl{border:1px solid #3A4048;background:transparent;color:var(--inverse)}
+
+  .card>h3.hd{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);margin:0 0 12px;font-weight:600}
+  .fine2{font-size:12.5px;color:var(--ink-3);line-height:1.45;margin:0 0 8px}
   .card h2{font-size:13.5px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
   .fixlist{margin:0;padding:0;list-style:none}
-  .fixlist li{font-size:14px;padding:7px 0;border-bottom:1px solid #eef1f4;display:flex;gap:9px;align-items:flex-start}
+  .fixlist li{font-size:14px;padding:7px 0;border-bottom:1px solid #EEF1F4;display:flex;gap:9px;align-items:flex-start}
   .fixlist li:last-child{border-bottom:0}
   .fixlist .n{font-weight:800;color:var(--muted);min-width:18px}
   table{width:100%;border-collapse:collapse;font-size:14.5px}
   td{padding:5px 0;vertical-align:top}
   td.k{color:var(--muted);width:46%;padding-right:10px}
-  td.v{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  td.v{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:var(--mono)}
+  .num{font-variant-numeric:tabular-nums;white-space:nowrap;font-family:var(--mono)}
   .date{display:inline-block;font-size:11px;font-weight:700;color:var(--muted);margin-left:3px;letter-spacing:.1px;white-space:nowrap}
   .tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;border:1px solid var(--line);color:var(--muted);margin-left:4px;letter-spacing:.3px;white-space:nowrap}
-  .tag.you{border-color:#c9d4e6;color:#2b4a7d;background:#eef3fb}
-  .tag.fx{border-color:#b9e3cd;color:#0f7a4d;background:#eaf7f0}
-  .tag.asof{border-color:#d8cdea;color:#4b3a72;background:#f2eef9}
-  .tag.nc{border-color:#e3c2bd;color:#8a3227;background:#fbecea}
+  .tag.you{border-color:#C9D4E6;color:#2B4A7D;background:#EEF3FB}
+  .tag.fx{border-color:#B9E3CD;color:#0F7A4D;background:#EAF7F0}
+  .tag.asof{border-color:#D8CDEA;color:#4B3A72;background:#F2EEF9}
+  .tag.nc{border-color:#E3C2BD;color:#8A3227;background:#FBECEA}
   .warn{border:1px solid var(--warnline);background:var(--warnbg);color:var(--warn);border-radius:11px;padding:11px 13px;font-size:13.5px;line-height:1.45;margin:0 0 11px}
-  .src{font-size:12px;color:var(--muted)}
-  /* On a phone the two table columns cannot both fit: the figure and its label tag are wider
-     than the label column, so the tag was clipped off the right edge — and that tag is what
-     says whether a figure is the user's own input. Stack the row instead. */
   @media (max-width:430px){
-    table,tbody,tr,td{display:block;width:100%}
-    td.k{width:100%;padding:9px 0 1px;font-size:13.5px}
-    td.v{text-align:left;padding:0 0 9px;white-space:normal}
+    table{font-size:12.5px}
+    td.k{width:54%;padding:4px 6px 4px 0;line-height:1.3}
+    td.v{padding:4px 0;font-size:12.5px;white-space:normal}
+    td.v .tag{display:block;margin:1px 0 0;font-size:9.5px;padding:0 3px}
+    td.v .date{font-size:9.5px}
   }
-  .warn{margin:0 0 11px;border:1px solid var(--warnline);background:var(--warnbg);color:var(--warn);border-radius:11px;padding:10px 12px;font-size:13.5px;font-weight:600}
-  .pack{border:1px solid #cfe0f2;background:#f5f9fd;border-radius:12px;padding:13px 14px;margin:0 0 11px}
-  .pack h2{font-size:15px;margin:0 0 5px}
-  .pack ul{margin:0 0 10px;padding-left:18px;font-size:14px;color:var(--muted)}
-  .pack .price{font-size:20px;font-weight:800;margin:0 0 9px}
-  .pack .packnote{font-size:13.5px;color:var(--muted);margin:0 0 11px}
-  .pack .privacy{font-size:12px;color:var(--muted);margin:10px 0 0;line-height:1.45}
-  .acts{display:flex;gap:9px;margin-top:12px}
-  .acts button{flex:1;padding:12px;font-size:15px;font-weight:650;border-radius:10px;cursor:pointer;min-height:46px}
-  .acts .copy{border:1px solid var(--ink);background:var(--ink);color:#fff}
-  .acts .dl{border:1px solid var(--line);background:#fff;color:var(--ink)}
-  .fine{font-size:12.5px;color:var(--muted);margin:14px 0 0}
-  .fine code{background:#f2f4f7;padding:1px 4px;border-radius:4px;font-size:12px}
-  .rates{font-size:12.5px;color:var(--muted);margin:0 0 11px}
-  .rates button{background:none;border:0;color:#2b4a7d;text-decoration:underline;font-size:12.5px;cursor:pointer;padding:0}
+  .pack{border:1px solid var(--rule);background:#F7F5EF;border-radius:14px;padding:16px;margin:14px 0 0}
+  .pack h2{font-size:15px;margin:0 0 5px;text-transform:none;letter-spacing:0;color:var(--ink)}
+  .pack .price{font-size:20px;font-weight:700;margin:0 0 9px;font-family:var(--mono)}
+  .pack .packnote{font-size:13.5px;color:var(--ink-2);margin:0 0 11px}
+  .pack .privacy{font-size:12px;color:var(--ink-3);margin:10px 0 0;line-height:1.45}
+  .foot{border-top:1px solid var(--rule);margin:24px 0 0;padding:14px 0 0}
+  .foot p{font-size:12px;color:var(--ink-3);line-height:1.45;margin:0 0 8px}
+  .foot code{background:#F1F3F6;padding:1px 4px;border-radius:4px;font-size:11.5px}
   .hidden{display:none !important}
+  @media (max-width:479px){
+    .sent{display:block;margin:0 0 14px}
+    .sent label{display:block;margin:0 0 5px}
+    .sent input,#t{width:100%}
+    .tail{display:inline-block;margin-top:3px}
+    .won{display:none}
+    .hero{margin:0 0 18px}
+  }
+  @media (min-width:520px){
+    h1{font-size:40px}
+    .verdict .big .num{font-size:56px}
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>How much does your Seoul treatment trip cost per session?</h1>
-  <!-- The landing promise is scoped to what is true about USING the tool, not about the
-       whole session. "No sign-up" and "nothing stored" were both broken by the page itself:
-       one screen later the $19 pre-registration card is on screen ("$19 pack - pre-registration
-       only" / "Count me as interested in the $19 pack"), and a click is Recorded ("Recorded:
-       one click, nothing else") and posted to the sink. The claims that survive contact are
-       the specific ones: nothing the user types leaves the page (the payload carries no quote,
-       session, travel or price values), and there is no email, no account and no list. -->
-  <p class="sub">Your own numbers only. Nothing you type leaves this page — no email, no account, no list.</p>
+  <p class="hd">SEOUL PER SESSION</p>
 
-  <form id="f" autocomplete="off" novalidate>
-    <div class="fld">
-      <label for="q">The quote you were given, all sessions (KRW)</label>
-      <input id="q" type="number" inputmode="numeric" step="1" min="0" placeholder="4050000">
-      <span class="hint">The total on your quote. If it is a per-session price, switch the unit below.</span>
+  <section class="hero">
+    <p class="kick">YOUR QUOTE, DIVIDED</p>
+    <h1>What one session actually costs.</h1>
+    <p class="sub">You were quoted a total. This turns it into a price per session — your quote, your flights, your nights, one number.</p>
+    <p class="proof">No account &middot; No email &middot; No provider list</p>
+  </section>
+
+  <form id="f" class="card" autocomplete="off" novalidate>
+    <p class="microlabel">YOUR NUMBERS</p>
+
+    <div class="sent">
+      <label for="q">My quote was</label>
+      <span class="won">&#8361;</span>
+      <input id="q" type="number" inputmode="numeric" step="1" min="0" placeholder="">
+      <label for="s">for</label>
+      <input id="s" type="number" inputmode="numeric" step="1" min="1" placeholder="" style="width:70px">
+      <span class="tail">sessions.</span>
     </div>
-
     <div class="toggles">
       <label class="tg" id="tgPer"><input type="checkbox" id="perSession"><span>My quote is per session</span></label>
+    </div>
+
+
+
+    <div class="fld" style="margin:0 0 10px">
+      <div class="sent" style="margin:0">
+        <label for="t">Getting there and staying cost</label>
+        <span class="won">&#8361;</span>
+        <input id="t" type="number" inputmode="numeric" step="1" min="0" placeholder="">
+      </div>
+      <span class="hint" style="margin:6px 0 0">Flights, hotel, and what you will spend once you are there &mdash; an interpreter, for example. One person.</span>
+    </div>
+    <div class="toggles">
       <label class="tg" id="tgHere"><input type="checkbox" id="inKorea"><span>I'm already in Korea</span></label>
     </div>
 
-    <div class="fld">
-      <label for="s">Sessions in that quote</label>
-      <input id="s" type="number" inputmode="numeric" step="1" min="1" placeholder="3">
-      <span class="hint">The number written on your quote. We never guess it.</span>
-    </div>
-
-
-
-    <div class="fld">
-      <label for="t">Your travel and on-the-ground costs (KRW)</label>
-      <input id="t" type="number" inputmode="numeric" step="1" min="0" placeholder="1350000">
-      <span class="hint">Flights, hotel, and what you will spend once you are there — an interpreter, for example. For one person. Leave empty if you are already in Korea.</span>
-    </div>
-
-    <button class="btn" type="submit">Work it out</button>
+    <button class="btn" type="submit">Work out my per-session cost</button>
+    <p class="exline">Example: &#8361;4,050,000 for 3 sessions + &#8361;1,350,000 travel. <button type="button" class="ex" id="ex">Fill the example &rarr;</button></p>
+    <p id="empty-msg" class="hidden">Start with the total on the quote.</p>
   </form>
 
   <div id="out" class="hidden" aria-live="polite">
-    <div class="headline">
-      <p class="k">Your per-session cost <span class="tag you">from your inputs</span></p>
-      <p class="main" id="h-main"></p>
-      <p class="case" id="h-case"></p>
-      <p class="target" id="h-target"></p>
-      <p class="premise" id="h-premise"></p>
-    </div>
+    <section class="verdict">
+      <p class="k">YOUR PER-SESSION COST</p>
+      <p class="big" id="h-main"></p>
+      <p class="at" id="h-case"></p>
+      <div class="acts">
+        <button class="copy" type="button" id="copy">Copy summary</button>
+        <button class="dl" type="button" id="dl">Download</button>
+      </div>
+      <p class="note">The travel bill is divided across your sessions. This is not the trip total divided by sessions &mdash; a 6-session course costs more in total, not the same.</p>
+    </section>
 
     <div id="warn-slot"></div>
-    <div class="disclaim" id="disclaim">Not medical advice · cost arithmetic only · checked 2026-10-21</div>
+    <p class="fine2" id="h-target"></p>
+    <p class="fine2" id="h-premise"></p>
 
-    <div class="acts">
-      <button class="copy" type="button" id="copy">Copy summary</button>
-      <button class="dl" type="button" id="dl">Download</button>
-    </div>
-
-    <div class="card" id="fixcard">
-      <h2>What would change this</h2>
-      <ul class="fixlist" id="fixlist"></ul>
-    </div>
-
-    <div class="card">
-      <h2>How we got there</h2>
-      <p style="font-size:13px;color:var(--muted);margin:0 0 8px" id="cur-note"></p>
+    <section class="card">
+      <h3 class="hd">Where each number came from</h3>
+      <p class="fine2" id="cur-note"></p>
       <table><tbody id="calc"></tbody></table>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>What we could not check</h2>
-      <p style="font-size:14px;margin:0 0 8px" id="q2note"></p>
+    <section class="card">
+      <h3 class="hd">What would change this</h3>
+      <ul class="fixlist" id="fixlist"></ul>
+    </section>
+
+    <section class="card">
+      <h3 class="hd">What we could not check</h3>
+      <p class="fine2" id="q2note"></p>
       <table><tbody id="limits"></tbody></table>
-    </div>
-
-    <!-- The pack card lives inside the result block on purpose (Chief, 2026-10-22): the landing
-         screen must not show a paid offer before the free answer is on screen. It is the only
-         conversion path this build has, so it stays - but it appears after the value, not before. -->
-    <div class="pack">
-      <h2>The $19 pack &mdash; pre-registration only</h2>
-      <p class="price">$19, once, when it exists</p>
-      <p class="packnote">The calculator above is free and complete on its own, and you do not need
-        this to use it. This is a pre-registration, not a sale: there is no payment on this page, and
-        you are not charged until you choose to buy. What the pack will contain is not decided yet,
-        which is why the button below only counts interest.</p>
-      <p class="privacy">No email is collected on this page. There is no list, and nobody will
-        contact you. The button below records one click and nothing else &mdash; no address, no quote,
-        no amounts.</p>
-      <button class="btn pay" type="button" id="wlbtn">Count me as interested in the $19 pack</button>
-      <p class="hint" id="wlmsg" style="margin-top:8px"></p>
-    </div>
+    </section>
 
   </div>
 
-  
-  
-  <p class="fine">
-    Every figure carries a label: <code>YOUR INPUT</code>, <code>AS OF date</code>, or
-    <code>not compared</code>. We hold no price records, so nothing here is compared with anyone
-    else's price. You entered your own quote, so this tool works out your own money only. This is
-    not medical advice and it points to no one.
-  </p>
-  
-  <p class="fine" id="meas-note"></p>
+  <div class="foot">
+    
+    
+    <p class="fine">Every figure carries a label: <code>YOUR INPUT</code>, <code>AS OF date</code>, or
+      <code>not compared</code>. We hold no price records, so nothing here is compared with anyone
+      else's price. You entered your own quote, so this tool works out your own money only. This is
+      not medical advice and it points to no one.</p>
+    
+    <p>Usage is counted anonymously &mdash; page opened, result shown, copy pressed. Your numbers are
+      never sent. No account, no email.</p>
+    <p id="disclaim">Not medical advice &middot; arithmetic only &middot; checked 2026-10-26</p>
+    <p class="fine" id="meas-note"></p>
+  </div>
 </div>
 
 <script>
@@ -436,6 +478,8 @@ if (typeof globalThis !== 'undefined') globalThis.DCR1 = API;
 
 
 window.__COLLECT__ = "https://ntfy.sh/4bc41ce028725aeea6d96d114f5872f9";
+window.__TEAM_MODE__ = /[?&]team=1(&|#|$)/.test(location.search);
+if (!window.__TEAM_MODE__) {
 /* ── measurement module ─────────────────────────────────────────────────────────
    Dev lane · Chief ruling 2026-10-21 (CHIEF_RULING_K5_LINE_AND_GATE_STRINGS §6.2–6.5)
 
@@ -471,7 +515,9 @@ window.__COLLECT__ = "https://ntfy.sh/4bc41ce028725aeea6d96d114f5872f9";
   // removed once on 2026-10-22 and restored the same day (Chief ruling) together with the
   // $19 CTA: one click, one event, no values, no PII. The card above the button discloses
   // that no address is collected.
-var EVENT_ALLOW = ['exposure','input_done','verdict_rendered','copy','download','lead_signup'];
+// Five, not six (Chief 2026-10-26): the $19 card is cut, and lead_signup was the only event
+// it ever emitted. An allowed event with no emitter is a slot waiting for the card to return.
+var EVENT_ALLOW = ['exposure','input_done','verdict_rendered','copy','download'];
 
   // The 4 registered channels + the two fixed classifications. Nothing else is ever
   // sent, and a value we do not recognise is not passed through.
@@ -610,6 +656,7 @@ var EVENT_ALLOW = ['exposure','input_done','verdict_rendered','copy','download',
   };
 })();
 
+}
 var BUILD_ALLOW_I4 = false;
 
 (function(){
@@ -630,7 +677,11 @@ var BUILD_ALLOW_I4 = false;
   // The endpoint is window.__COLLECT__ — an ABSOLUTE https URL. With no endpoint the
   // call is a no-op and the page says measurement is unavailable: a relative path
   // would 404 on a static host and read as success.
-  function track(evt, meta){ window.__MEASURE__.track(evt, meta); }
+  function track(evt, meta){
+    // Team mode has no transport at all: __MEASURE__ is never defined, so the no-op is here.
+    if(window.__TEAM_MODE__ || !window.__MEASURE__) return;
+    window.__MEASURE__.track(evt, meta);
+  }
 
   function moneyKRW(scaled){ return DCR1.money(scaled, 'KRW'); }
 
@@ -716,6 +767,8 @@ var BUILD_ALLOW_I4 = false;
 
     var w = DCR1.computeQ1Travel(I1, I2, I3);          // C1, trip total, E(n), P(n)
     // The counts are arithmetic examples only. They are never a plan for treatment.
+    // The statement: the same arithmetic as buildSummary, laid out as a receipt.
+    // Figures are the core's own (w.u_local, w.at) — this function never re-derives money.
     var counts = [1, 3, 6];
     if(I2 > 1 && counts.indexOf(I2) < 0) counts.push(I2);
     counts.sort(function(a,b){ return a - b; });
@@ -730,28 +783,48 @@ var BUILD_ALLOW_I4 = false;
     }
     $('warn-slot').innerHTML = warn ? '<div class="warn">' + warn + '</div>' : '';
 
-    // first line: per-session amounts with the travel cost included
-    if(I3 === 0n){
-      $('h-main').innerText = 'Your quote: ' + moneyKRW(w.u_local) + ' a session · no travel cost in this calculation';
-      $('h-case').innerText = 'With no travel cost in the calculation, every session costs the same '
-        + moneyKRW(w.u_local) + '. The travel arithmetic appears once a travel cost is entered.';
-    } else {
-      // The first line must carry the user's OWN session count. It is the number they
-      // would quote back to a clinic, so an arithmetic example may never take its place.
-      var pair = I2 > 1 ? [1, I2] : [1, 3];
-      $('h-main').innerText = pair[0] + ' session: ' + moneyKRW(w.at(pair[0])) + ' a session with travel · '
-        + pair[1] + ' sessions: ' + moneyKRW(w.at(pair[1])) + ' a session';
-      var caseCounts = counts.slice(1);
-      if(I2 === 1 && caseCounts.indexOf(1) < 0) caseCounts.unshift(1);
-      $('h-case').innerText = 'Your quote is ' + moneyKRW(w.u_local) + ' a session. With travel, '
-        + caseCounts.map(function(n){
-            return n + ' session' + (n > 1 ? 's' : '') + (n > 1 ? ' come to ' : ' comes to ')
-              + moneyKRW(w.at(n)) + ' a session'; }).join(', and ')
-        + '. More sessions spread the travel cost.';
+    // §2.4 of LANDING_SPEC_2026-10-26: ONE figure at the climax — the visitor's OWN
+    // session count. The 1-vs-N pair was the arithmetic, not the answer, and printing it
+    // here is what dropped the user's own count for 4/5/6/10 inputs on 2026-10-21. It now
+    // lives in the statement block below, where a wrong hand-check cannot become the headline.
+    // Design §0a (2026-10-26): the climax is the EQUATION, not the answer alone. A one-figure
+    // climax is a number with no arithmetic in it, and gate ① is right to refuse it.
+    // w.u_local + w.premium(I2) === w.at(I2) by construction (dcr1-core.mjs:229), so the three
+    // terms on screen add up exactly — no rounding step to explain away.
+    // Design §2.4c/§2.4d: three stacked terms, every cell placed by an explicit grid-row
+    // (auto-placement put the operator beside the wrong label while the figures still lined
+    // up, so alignment alone cannot prove this is right). Zero travel drops the travel term
+    // whole — a visitor already in Seoul was shown "+ ₩0 travel" under a caption that said
+    // travel was included, and gate ① never sees that state because it reads scenario A only.
+    function eqCell(row, op, fig, lab, isTotal){
+      return (op ? '<span class="op' + (op === '=' ? ' eq' : '') + '" style="grid-row:' + row + '">' + op + '</span>' : '')
+        + '<span class="k' + (isTotal ? ' tot' : '') + '" style="grid-row:' + row + '">' + fig + '</span>'
+        + '<span class="u" style="grid-row:' + (row + 1) + '">' + lab + '</span>';
     }
-    $('h-target').innerText = 'These are per-session amounts with your travel cost included, worked out from '
-      + 'your quote, your session count and your travel cost. No other price is used and no price '
-      + 'comparison is made.';
+    var eq = '', eqRow = 1;
+    if(I3 === 0n){
+      // Design §2.4d: with no travel there is nothing to add, so there is no equation to
+      // show — printing "₩633,333 treatment = ₩633,333 per session" states A = A and reads
+      // to a visitor like a number that failed to compute. One figure, one label.
+      eq = eqCell(eqRow, '', moneyKRW(w.at(I2)), 'per session', true);
+    } else {
+      eq += eqCell(eqRow, '', moneyKRW(w.u_local), 'treatment', false);
+      eqRow += 2;
+      eq += eqCell(eqRow, '+', moneyKRW(w.premium(I2)),
+                   'travel (' + moneyKRW(I3) + ' \u00f7 ' + I2 + ')', false);
+      eqRow += 2;
+      eq += eqCell(eqRow, '=', moneyKRW(w.at(I2)), 'per session', true);
+    }
+    $('h-main').innerHTML = eq;
+    $('h-case').innerText = 'at the ' + I2 + ' session' + (I2 > 1 ? 's' : '') + ' in your quote'
+      + (I3 === 0n ? ', no travel cost in this calculation' : '');
+    $('h-target').innerText = I3 === 0n
+      ? 'These are per-session amounts from your quote and your session count. No travel cost is '
+        + 'included, because none is added in this calculation. No other price is used and no price '
+        + 'comparison is made.'
+      : 'These are per-session amounts with your travel cost included, worked out from your quote, '
+        + 'your session count and your travel cost. No other price is used and no price comparison '
+        + 'is made.';
     var travelNote = here
       ? ', already in Korea, no travel cost subtracted'
       : (t === 0
@@ -921,14 +994,6 @@ var BUILD_ALLOW_I4 = false;
   // text above the button says: one click, counted, no address, no quote, no amounts, nothing
   // charged.
 
-  $('wlbtn').addEventListener('click', function(){
-    // One click, one event, no values. The card above the button says exactly this: no address,
-    // no list, no contact, nothing charged. Chief's ⑮d: a click must emit exactly one event.
-    track('lead_signup', {});
-    $('wlmsg').innerHTML = 'Recorded: one click, nothing else. No email was collected, there is ' +
-      'no list, and nobody will contact you. Nothing has been charged.';
-  });
-
   function buildSummary(){
     // The pasted summary is the artefact that leaves the page, so the labels must not run
     // into the numbers: innerText concatenates the inline spans ("₩4,050,000YOUR INPUT").
@@ -947,7 +1012,7 @@ var BUILD_ALLOW_I4 = false;
       var body = Array.prototype.map.call(t, function(e){ return e.innerText.trim(); })
         .filter(function(x){ return x && x !== num; }).join(' ');
       return '  ' + num + '. ' + body; });
-    return [ 'YOUR TRIP COST', $('h-main').innerText, $('h-case').innerText, $('h-premise').innerText, '',
+    return [ 'YOUR PER-SESSION COST', $('h-main').innerText, $('h-case').innerText, $('h-premise').innerText, '',
              'What would change this' ].concat(fixes)
       .concat(['', 'How we got there', $('cur-note').innerText]).concat(rows)
       .concat(['', 'What we could not check', $('q2note').innerText]).concat(limits).join('\n');
@@ -961,11 +1026,37 @@ var BUILD_ALLOW_I4 = false;
   track('exposure', {});
   // No endpoint -> the transport is a no-op. Say so on the page: a silent no-op would
   // leave us believing the tool is measured when it is not (BRIEF: no silent failure).
-  if(!window.__MEASURE__.enabled){
+  if(!window.__TEAM_MODE__ && window.__MEASURE__ && !window.__MEASURE__.enabled){
     var mn = $('meas-note');
     if(mn) mn.textContent = 'Measurement is not available in this build, so we cannot tell how the ' +
       'tool is used. Nothing you type is sent anywhere from this page.';
   }
+})();
+</script>
+<script>
+/* Shell controls added with LANDING_SPEC_2026-10-26 §2.3 / §6. No arithmetic here, no event here. */
+(function(){
+  var f=document.getElementById('f'), q=document.getElementById('q'),
+      m=document.getElementById('empty-msg'), ex=document.getElementById('ex');
+  if(ex) ex.addEventListener('click', function(){
+    document.getElementById('q').value='4050000';
+    document.getElementById('s').value='3';
+    document.getElementById('t').value='1350000';
+    f.dispatchEvent(new Event('submit',{cancelable:true,bubbles:true}));
+  });
+  if(f) f.addEventListener('submit', function(){
+    if(m){
+      if(!q.value){ m.classList.remove('hidden'); q.focus(); }
+      else { m.classList.add('hidden'); }
+    }
+    setTimeout(function(){
+      var out=document.getElementById('out');
+      if(out && !out.classList.contains('hidden')){
+        var y=out.getBoundingClientRect().top+window.scrollY-12;
+        window.scrollTo(0, y>0?y:0);
+      }
+    }, 30);
+  });
 })();
 </script>
 </body>
