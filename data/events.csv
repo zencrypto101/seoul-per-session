@@ -257,3 +257,4 @@ ntfy_time_utc,publisher_time_utc,ntfy_id,e,ch,sid,extra,body
 2026-10-27T10:12:53Z,2026-10-27T10:12:53Z,FphFfxkMcOp7,exposure,unresolved,f113a9b4efa2070c,,e=exposure&ch=unresolved&sid=f113a9b4efa2070c
 2026-10-27T10:13:05Z,2026-10-27T10:13:05Z,M2JwySdE0cbb,input_done,unresolved,f113a9b4efa2070c,f=3,e=input_done&ch=unresolved&sid=f113a9b4efa2070c&f=3
 2026-10-27T10:13:05Z,2026-10-27T10:13:05Z,4cKw491jzbnb,verdict_rendered,unresolved,f113a9b4efa2070c,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f113a9b4efa2070c&b=q1&t=1&f=3
+2026-10-28T10:05:08Z,2026-10-28T10:05:08Z,TwK3Fa4IGkI9,exposure,unresolved,c8f6ab168b71e476,,e=exposure&ch=unresolved&sid=c8f6ab168b71e476
