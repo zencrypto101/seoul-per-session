@@ -258,3 +258,21 @@ ntfy_time_utc,publisher_time_utc,ntfy_id,e,ch,sid,extra,body
 2026-10-27T10:13:05Z,2026-10-27T10:13:05Z,M2JwySdE0cbb,input_done,unresolved,f113a9b4efa2070c,f=3,e=input_done&ch=unresolved&sid=f113a9b4efa2070c&f=3
 2026-10-27T10:13:05Z,2026-10-27T10:13:05Z,4cKw491jzbnb,verdict_rendered,unresolved,f113a9b4efa2070c,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=f113a9b4efa2070c&b=q1&t=1&f=3
 2026-10-28T10:05:08Z,2026-10-28T10:05:08Z,TwK3Fa4IGkI9,exposure,unresolved,c8f6ab168b71e476,,e=exposure&ch=unresolved&sid=c8f6ab168b71e476
+2026-10-28T14:05:09Z,2026-10-28T14:05:09Z,vWIwPZDtH6zd,exposure,unresolved,c8f6ab168b71e476,,e=exposure&ch=unresolved&sid=c8f6ab168b71e476
+2026-10-28T14:05:10Z,2026-10-28T14:05:10Z,6gdu5prJNEAm,exposure,unresolved,b018007a5935f08f,,e=exposure&ch=unresolved&sid=b018007a5935f08f
+2026-10-28T14:25:27Z,2026-10-28T14:25:27Z,Chr71CNfo1vg,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
+2026-10-28T14:25:29Z,2026-10-28T14:25:29Z,TYm4tmu1NBUo,verdict_rendered,unresolved,353f1219715016ad,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=353f1219715016ad&b=q1&t=1&f=3
+2026-10-28T14:25:31Z,2026-10-28T14:25:31Z,kMjdp1vhW0G1,exposure,unresolved,7cf034f0fef3fcfd,,e=exposure&ch=unresolved&sid=7cf034f0fef3fcfd
+2026-10-28T14:25:33Z,2026-10-28T14:25:33Z,z5stRaSn71YO,verdict_rendered,unresolved,7cf034f0fef3fcfd,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=7cf034f0fef3fcfd&b=q1&t=1&f=3
+2026-10-28T14:25:37Z,2026-10-28T14:25:37Z,Zc56M8U2wU9J,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
+2026-10-28T14:25:38Z,2026-10-28T14:25:38Z,82D6Flzl6xjy,verdict_rendered,unresolved,353f1219715016ad,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=353f1219715016ad&b=q1&t=1&f=3
+2026-10-28T14:28:04Z,2026-10-28T14:28:04Z,5gLCdWYrxTHM,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
+2026-10-28T14:28:22Z,2026-10-28T14:28:22Z,sJODgIO1JRO3,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
+2026-10-28T14:28:42Z,2026-10-28T14:28:42Z,GlZb1fZXTbsv,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
+2026-10-28T14:29:27Z,2026-10-28T14:29:27Z,DVlNG9ml22yA,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
+2026-10-28T14:29:29Z,2026-10-28T14:29:29Z,a4EB1qgZ279u,verdict_rendered,unresolved,353f1219715016ad,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=353f1219715016ad&b=q1&t=1&f=3
+2026-10-28T14:30:08Z,2026-10-28T14:30:08Z,tt6wCbTB4rkg,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
+2026-10-28T14:30:10Z,2026-10-28T14:30:10Z,OFye0ROAIZhL,verdict_rendered,unresolved,353f1219715016ad,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=353f1219715016ad&b=q1&t=1&f=3
+2026-10-28T14:31:19Z,2026-10-28T14:31:19Z,PYtPTZNhhLF9,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
+2026-10-28T14:31:20Z,2026-10-28T14:31:20Z,M5gcFZKMt0S2,verdict_rendered,unresolved,353f1219715016ad,b=q1 f=3 t=1,e=verdict_rendered&ch=unresolved&sid=353f1219715016ad&b=q1&t=1&f=3
+2026-10-28T14:31:34Z,2026-10-28T14:31:34Z,uxOVQ6KSYPXD,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
