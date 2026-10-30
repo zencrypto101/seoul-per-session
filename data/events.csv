@@ -278,3 +278,11 @@ ntfy_time_utc,publisher_time_utc,ntfy_id,e,ch,sid,extra,body
 2026-10-28T14:31:34Z,2026-10-28T14:31:34Z,uxOVQ6KSYPXD,exposure,unresolved,353f1219715016ad,,e=exposure&ch=unresolved&sid=353f1219715016ad
 2026-10-29T11:51:30Z,2026-10-29T11:51:30Z,hrpkyjEVLWnA,exposure,unresolved,f7fb3ce53a1d471d,,e=exposure&ch=unresolved&sid=f7fb3ce53a1d471d
 2026-10-29T11:51:31Z,2026-10-29T11:51:31Z,imjAfd8VBYpJ,exposure,unresolved,ef829611fc6508c6,,e=exposure&ch=unresolved&sid=ef829611fc6508c6
+2026-10-30T04:10:50Z,2026-10-30T04:10:50Z,L4BFEdlINpUe,exposure,unresolved,d8b9cc44e56f87ac,,e=exposure&ch=unresolved&sid=d8b9cc44e56f87ac
+2026-10-30T04:10:51Z,2026-10-30T04:10:51Z,urPBAUzlapyU,exposure,unresolved,3fc974399afb3e48,,e=exposure&ch=unresolved&sid=3fc974399afb3e48
+2026-10-30T04:11:03Z,2026-10-30T04:11:03Z,raat5Qh7yytg,input_done,unresolved,3fc974399afb3e48,f=2,e=input_done&ch=unresolved&sid=3fc974399afb3e48&f=2
+2026-10-30T04:11:05Z,2026-10-30T04:11:05Z,wPocg1P2dUFr,verdict_rendered,unresolved,3fc974399afb3e48,b=q1 f=3 t=0,e=verdict_rendered&ch=unresolved&sid=3fc974399afb3e48&b=q1&t=0&f=3
+2026-10-30T04:11:10Z,2026-10-30T04:11:10Z,ODeBvl44lTb5,copy,unresolved,3fc974399afb3e48,,e=copy&ch=unresolved&sid=3fc974399afb3e48
+2026-10-30T04:11:11Z,2026-10-30T04:11:11Z,IbEsQZNkugFC,copy,unresolved,3fc974399afb3e48,,e=copy&ch=unresolved&sid=3fc974399afb3e48
+2026-10-30T04:11:11Z,2026-10-30T04:11:11Z,EHp8QPJv1tYv,download,unresolved,3fc974399afb3e48,,e=download&ch=unresolved&sid=3fc974399afb3e48
+2026-10-30T04:23:40Z,2026-10-30T04:23:40Z,O0uaon9OMTC3,exposure,unresolved,3fc974399afb3e48,,e=exposure&ch=unresolved&sid=3fc974399afb3e48
