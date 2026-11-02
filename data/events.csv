@@ -286,3 +286,6 @@ ntfy_time_utc,publisher_time_utc,ntfy_id,e,ch,sid,extra,body
 2026-10-30T04:11:11Z,2026-10-30T04:11:11Z,IbEsQZNkugFC,copy,unresolved,3fc974399afb3e48,,e=copy&ch=unresolved&sid=3fc974399afb3e48
 2026-10-30T04:11:11Z,2026-10-30T04:11:11Z,EHp8QPJv1tYv,download,unresolved,3fc974399afb3e48,,e=download&ch=unresolved&sid=3fc974399afb3e48
 2026-10-30T04:23:40Z,2026-10-30T04:23:40Z,O0uaon9OMTC3,exposure,unresolved,3fc974399afb3e48,,e=exposure&ch=unresolved&sid=3fc974399afb3e48
+2026-11-02T13:40:48Z,2026-11-02T13:40:48Z,P1spDb5nN9BL,exposure,other,c6696f750d6e3fb1,s=bonita,e=exposure&ch=other&s=bonita&sid=c6696f750d6e3fb1
+2026-11-02T13:41:33Z,2026-11-02T13:41:33Z,TStcHBtWCnTA,exposure,other,c6696f750d6e3fb1,s=bonita,e=exposure&ch=other&s=bonita&sid=c6696f750d6e3fb1
+2026-11-02T13:41:33Z,2026-11-02T13:41:33Z,AOR0EuAM0K15,exposure,other,c6696f750d6e3fb1,s=bonita,e=exposure&ch=other&s=bonita&sid=c6696f750d6e3fb1
